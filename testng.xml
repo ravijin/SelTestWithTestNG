@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Selenium Tests" verbose="3" parallel="tests">
+<!--
+	<listeners>
+ 		<listener class-name="com.seleniumtests.utility.Listener"></listener>
+ 	</listeners>
+-->
+<!-- 	
+	<test name="Test in Chrome">
+		<parameter name="browser" value="chrome"></parameter>
+		<parameter name="port" value="4444"/>
+		<classes>
+			<class name="com.seleniumtests.test.ClubReg"/>
+		</classes>
+	</test>
+-->	
+<!-- 	
+	<test name="Test in FF">
+		<parameter name="browser" value="FF"></parameter>
+		<parameter name="port" value="4444"/>
+		<classes>
+			<class name="com.seleniumtests.test.ClubReg"/>
+		</classes>
+	</test>
+-->
+<!--
+	<test name="Test in IE">
+		<parameter name="browser" value="IE"></parameter>
+		<parameter name="port" value="4444"/>
+		<classes>
+			<class name="com.seleniumtests.test.ClubReg"/>
+		</classes>
+	</test>
+-->
+	<test name="Cucumber Tests">
+		<classes>
+			<class name="com.seleniumtests.cucumbertest.java.RunCucumberTests"/>
+		</classes>
+	</test>
+</suite>

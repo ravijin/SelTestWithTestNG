@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestSuite" time="117.752" tests="1" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="JOB_NAME" value="SeleniumMaven2Projet"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="NUMBER_OF_PROCESSORS" value="4"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="JENKINS_HOME" value="C:\Users\Ravi\.jenkins"/>
+    <property name="HUDSON_SERVER_COOKIE" value="eb54cee31bc30c32"/>
+    <property name="POM_ARTIFACTID" value="seleniumtestsbb"/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_67\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_67\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_67\jre\classes"/>
+    <property name="EXECUTOR_NUMBER" value="1"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="POM_DISPLAYNAME" value="seleniumtestsbb"/>
+    <property name="NODE_LABELS" value="master"/>
+    <property name="TEMP" value="C:\Windows\TEMP"/>
+    <property name="java.runtime.version" value="1.7.0_67-b01"/>
+    <property name="ANT_HOME" value="D:\Softwares\apache-ant-1.7.1"/>
+    <property name="user.name" value="Ravi"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="CommonProgramW6432" value="C:\Program Files\Common Files"/>
+    <property name="CHROME_DRIVER" value="C:\D\grid\seleniumtests\chromedriver.exe"/>
+    <property name="ProgramFiles" value="C:\Program Files"/>
+    <property name="PROMPT" value="$P$G"/>
+    <property name="user.language" value="en"/>
+    <property name="BUILD_DISPLAY_NAME" value="#68"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_67\jre\bin"/>
+    <property name="IE_DRIVER" value="C:\D\grid\seleniumtests\IEDriverServer.exe"/>
+    <property name="LOCALAPPDATA" value="C:\Users\Ravi\AppData\Local"/>
+    <property name="java.version" value="1.7.0_67"/>
+    <property name="PROCESSOR_LEVEL" value="6"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="USERNAME" value="Ravi"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="NODE_NAME" value="master"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_67\jre\lib\endorsed"/>
+    <property name="BUILD_ID" value="2014-11-17_17-11-03"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="HOMEDRIVE" value="C:"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="=::" value="::\"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
+    <property name="user.country" value="US"/>
+    <property name="ALLUSERSPROFILE" value="C:\ProgramData"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_67\jre"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="os.version" value="6.1"/>
+    <property name="CATALINA_HOME" value="D:\Softwares\apache-tomcat-7.0.52"/>
+    <property name="=ExitCode" value="00000082"/>
+    <property name="POM_VERSION" value="1.0-SNAPSHOT"/>
+    <property name="TMP" value="C:\Users\Ravi\AppData\Local\Temp"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.version" value="24.65-b04"/>
+    <property name="AMDAPPSDKROOT" value="C:\Program Files (x86)\AMD APP\"/>
+    <property name="GROOVY_HOME" value="C:\D\Software\groovy-2.2.2"/>
+    <property name="user.variant" value=""/>
+    <property name="CommonProgramFiles(x86)" value="C:\Program Files (x86)\Common Files"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="GRADLE_HOME" value="C:\D\Software\gradle-1.11"/>
+    <property name="FP_NO_HOST_CHECK" value="NO"/>
+    <property name="JAVA_HOME" value="C:\Program Files\Java\jdk1.7.0_67"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="CommonProgramFiles" value="C:\Program Files\Common Files"/>
+    <property name="ComSpec" value="C:\Windows\system32\cmd.exe"/>
+    <property name="HOMEPATH" value="\Users\Ravi"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="POM_PACKAGING" value="jar"/>
+    <property name="user.script" value=""/>
+    <property name="COMPUTERNAME" value="RJINDAL"/>
+    <property name="POM_GROUPID" value="com.seleniumtestsbb"/>
+    <property name="user.home" value="C:\Users\Ravi"/>
+    <property name="PUBLIC" value="C:\Users\Public"/>
+    <property name="BUILD_TAG" value="jenkins-SeleniumMaven2Projet-68"/>
+    <property name="JENKINS_SERVER_COOKIE" value="eb54cee31bc30c32"/>
+    <property name="HUDSON_URL" value="http://localhost:8080/jenkins/"/>
+    <property name="ProgramData" value="C:\ProgramData"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="USERPROFILE" value="C:\Users\Ravi"/>
+    <property name="CLASSPATH" value=""/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_67\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\Softwares\apache-maven-3.2.1/bin;C:\Program Files\Java\jdk1.7.0_67/bin;C:\Program Files\Java\jdk1.7.0_67/bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;D:\Softwares\apache-maven-3.2.1\bin;C:\Program Files\Java\jdk1.7.0_67\bin;D:\Softwares\apache-ant-1.7.1\bin;C:\D\Software\openssl-0.9.8k_X64\bin;C:\D\Software\gradle-1.11\bin;C:\D\Software\grails-2.3.7\bin;C:\D\Software\groovy-2.2.2\bin;C:\Program Files (x86)\Git\bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;D:\Softwares\apache-maven-3.2.1\bin;C:\Program Files\Java\jdk1.7.0_67\bin;D:\Softwares\apache-ant-1.7.1\bin;C:\D\Software\openssl-0.9.8k_X64\bin;C:\D\Software\gradle-1.11\bin;C:\D\Software\grails-2.3.7\bin;C:\D\Software\groovy-2.2.2\bin;."/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="APPDATA" value="C:\Users\Ravi\AppData\Roaming"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="maven.home" value="D:\Softwares\apache-maven-3.2.1"/>
+    <property name="java.class.path" value="C:\Users\Ravi\.jenkins\plugins\maven-plugin\WEB-INF\lib\maven31-agent-1.5.jar;D:\Softwares\apache-maven-3.2.1\boot\plexus-classworlds-2.5.1.jar;D:\Softwares\apache-maven-3.2.1/conf/logging"/>
+    <property name="sun.java.command" value="jenkins.maven3.agent.Maven31Main D:\Softwares\apache-maven-3.2.1 C:\Users\Ravi\.jenkins\war\WEB-INF\lib\remoting-2.44.jar C:\Users\Ravi\.jenkins\plugins\maven-plugin\WEB-INF\lib\maven31-interceptor-1.5.jar C:\Users\Ravi\.jenkins\plugins\maven-plugin\WEB-INF\lib\maven3-interceptor-commons-1.5.jar 51725"/>
+    <property name="OPENSSL_CONF" value="C:\OpenSSL-Win64\bin\openssl.cfg"/>
+    <property name="Path" value="C:\Program Files\Java\jdk1.7.0_67/bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;D:\Softwares\apache-maven-3.2.1\bin;C:\Program Files\Java\jdk1.7.0_67\bin;D:\Softwares\apache-ant-1.7.1\bin;C:\D\Software\openssl-0.9.8k_X64\bin;C:\D\Software\gradle-1.11\bin;C:\D\Software\grails-2.3.7\bin;C:\D\Software\groovy-2.2.2\bin;C:\Program Files (x86)\Git\bin;C:\Program Files (x86)\AMD APP\bin\x86_64;C:\Program Files (x86)\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;D:\Softwares\apache-maven-3.2.1\bin;C:\Program Files\Java\jdk1.7.0_67\bin;D:\Softwares\apache-ant-1.7.1\bin;C:\D\Software\openssl-0.9.8k_X64\bin;C:\D\Software\gradle-1.11\bin;C:\D\Software\grails-2.3.7\bin;C:\D\Software\groovy-2.2.2\bin"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PROCESSOR_ARCHITECTURE" value="AMD64"/>
+    <property name="PATH+JDK" value="C:\Program Files\Java\jdk1.7.0_67/bin"/>
+    <property name="PROCESSOR_IDENTIFIER" value="Intel64 Family 6 Model 42 Stepping 7, GenuineIntel"/>
+    <property name="SESSIONNAME" value="Console"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="M2_HOME" value="D:\Softwares\apache-maven-3.2.1"/>
+    <property name="java.io.tmpdir" value="C:\Users\Ravi\AppData\Local\Temp\"/>
+    <property name="OS" value="Windows_NT"/>
+    <property name="HUDSON_HOME" value="C:\Users\Ravi\.jenkins"/>
+    <property name="PATH+MAVEN" value="D:\Softwares\apache-maven-3.2.1/bin"/>
+    <property name="ProgramFiles(x86)" value="C:\Program Files (x86)"/>
+    <property name="BUILD_URL" value="http://localhost:8080/jenkins/job/SeleniumMaven2Projet/68/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="SystemRoot" value="C:\Windows"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_67\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="user.dir" value="C:\D\New_after_cucu_deleted\seleniumtestsbb"/>
+    <property name="JOB_URL" value="http://localhost:8080/jenkins/job/SeleniumMaven2Projet/"/>
+    <property name="LOGONSERVER" value="\\RJINDAL"/>
+    <property name="USERDOMAIN" value="RJINDAL"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="MAVEN_HOME" value="D:\Softwares\apache-maven-3.2.1"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="BUILD_NUMBER" value="68"/>
+    <property name="JENKINS_URL" value="http://localhost:8080/jenkins/"/>
+    <property name="PROCESSOR_REVISION" value="2a07"/>
+    <property name="ProgramW6432" value="C:\Program Files"/>
+    <property name="windir" value="C:\Windows"/>
+    <property name="=C:" value="C:\D\Software"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="SystemDrive" value="C:"/>
+    <property name="maven3.interceptor" value="C:\Users\Ravi\.jenkins\plugins\maven-plugin\WEB-INF\lib\maven31-interceptor-1.5.jar"/>
+    <property name="GRAILS_HOME" value="C:\D\Software\grails-2.3.7"/>
+    <property name="WORKSPACE" value="C:\Users\Ravi\.jenkins\jobs\SeleniumMaven2Projet\workspace"/>
+    <property name="maven3.interceptor.common" value="C:\Users\Ravi\.jenkins\plugins\maven-plugin\WEB-INF\lib\maven3-interceptor-commons-1.5.jar"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="PSModulePath" value="C:\Windows\system32\WindowsPowerShell\v1.0\Modules\"/>
+  </properties>
+  <testcase name="runCukes" classname="com.seleniumtests.cucumbertest.java.RunCucumberTests" time="117.752">
+    <failure message="java.lang.AssertionError: java.lang.AssertionError: expected [false] but found [true]java.lang.AssertionError: expected [true] but found [false]" type="cucumber.runtime.CucumberException">cucumber.runtime.CucumberException: java.lang.AssertionError: java.lang.AssertionError: expected [false] but found [true]java.lang.AssertionError: expected [true] but found [false]
+	at cucumber.api.testng.TestNGCucumberRunner.runCukes(TestNGCucumberRunner.java:58)
+	at com.seleniumtests.cucumbertest.java.RunCucumberTests.runCukes(RunCucumberTests.java:26)
+Caused by: java.lang.AssertionError: java.lang.AssertionError: expected [false] but found [true]java.lang.AssertionError: expected [true] but found [false]
+	at com.thoughtworks.selenium.SeleneseTestBase.fail(SeleneseTestBase.java:391)
+	at com.seleniumtests.core.CustomVerification.checkForVerificationErrors(CustomVerification.java:102)
+	at com.seleniumtests.cucumbertest.java.ClubRegSteps.i_get_welcome_page(ClubRegSteps.java:113)
+	at ✽.And i get welcome page(src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:16)
+</failure>
+    <system-out><![CDATA[...
+... TestNG 6.8.9beta by Cédric Beust (cedric@beust.com)
+...
+
+Feature: ClubRegistration
+Browser= chrome
+Platform= VISTA
+URL= https://tbbqabeta.productpartners.com
+
+  Background: SignUp                                          # src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:3
+    Given I want to open the browser                          # ClubRegSteps.i_want_to_open_the_browser()
+    And I visit the https://tbbqabeta.productpartners.com url # ClubRegSteps.i_visit_the_https_tbbqabeta_productpartners_com_url()
+    And I visit to the Signup Page                            # ClubRegSteps.i_visit_to_the_Signup_Page()
+    When I click on the club signup                           # ClubRegSteps.i_click_on_the_club_signup()
+TNCtrue
+Invisibilitytrue
+hidden true
+
+  @run
+  Scenario: DataEntryValid                 # src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:10
+    Then i do submit with valid form entry # ClubRegSteps.i_do_submit_with_valid_form_entry(DataTable)
+    #| OctC | club8 | rj7_011014_c7@mailinator.com | rj7_011014_c7@mailinator.com | 11111 | 11111 | OctC7club8 | 1978 | 1111111111 | United States | OctC | club7 | seattle | Washington | 98106 | abc | xyz | Visa | 4222222222222 | 2021 | 123 | TRUE | FALSE |  | TRUE | FALSE | 1111 |
+    And i get welcome page                 # ClubRegSteps.i_get_welcome_page()
+      java.lang.AssertionError: java.lang.AssertionError: expected [false] but found [true]java.lang.AssertionError: expected [true] but found [false]
+      	at com.thoughtworks.selenium.SeleneseTestBase.fail(SeleneseTestBase.java:391)
+      	at com.seleniumtests.core.CustomVerification.checkForVerificationErrors(CustomVerification.java:102)
+      	at com.seleniumtests.cucumbertest.java.ClubRegSteps.i_get_welcome_page(ClubRegSteps.java:113)
+      	at ?.And i get welcome page(src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:16)
+
+Browser= chrome
+Platform= VISTA
+URL= https://tbbqabeta.productpartners.com
+
+  Background: SignUp                                          # src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:3
+    Given I want to open the browser                          # ClubRegSteps.i_want_to_open_the_browser()
+    And I visit the https://tbbqabeta.productpartners.com url # ClubRegSteps.i_visit_the_https_tbbqabeta_productpartners_com_url()
+    And I visit to the Signup Page                            # ClubRegSteps.i_visit_to_the_Signup_Page()
+    When I click on the club signup                           # ClubRegSteps.i_click_on_the_club_signup()
+TNCtrue
+Invisibilitytrue
+hidden true
+
+  @run
+  Scenario: DataEntryInValid                 # src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:19
+    Then i do submit with Invalid form entry # ClubRegSteps.i_do_submit_with_Invalid_form_entry(DataTable)
+    #| OctC | club7 | rj_011014_c7@mailinator.com | rj_011014_c7@mailinator.com | 11111 | 11111 | OctCclub7 | 1978 | 1111111111 | Canada | OctC | club7 | montreal | Quebec | h3b5l1 | abc | xyz | Visa | 4222222222222 | 2021 | 123 | TRUE | TRUE | 994 | TRUE | TRUE | 1111 |
+    And i get error page                     # ClubRegSteps.i_get_error_page()
+
+2 Scenarios (1 failed, 1 passed)
+12 Steps (1 failed, 11 passed)
+1m57.106s
+
+java.lang.AssertionError: java.lang.AssertionError: expected [false] but found [true]java.lang.AssertionError: expected [true] but found [false]
+	at com.thoughtworks.selenium.SeleneseTestBase.fail(SeleneseTestBase.java:391)
+	at com.seleniumtests.core.CustomVerification.checkForVerificationErrors(CustomVerification.java:102)
+	at com.seleniumtests.cucumbertest.java.ClubRegSteps.i_get_welcome_page(ClubRegSteps.java:113)
+	at ?.And i get welcome page(src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:16)
+
+
+2 Scenarios (1 failed, 1 passed)
+12 Steps (1 failed, 11 passed)
+1m57.106s
+
+java.lang.AssertionError: java.lang.AssertionError: expected [false] but found [true]java.lang.AssertionError: expected [true] but found [false]
+	at com.thoughtworks.selenium.SeleneseTestBase.fail(SeleneseTestBase.java:391)
+	at com.seleniumtests.core.CustomVerification.checkForVerificationErrors(CustomVerification.java:102)
+	at com.seleniumtests.cucumbertest.java.ClubRegSteps.i_get_welcome_page(ClubRegSteps.java:113)
+	at ?.And i get welcome page(src/test/resources/com/seleniumtests/cucumbertest/features/ClubRegNew.feature:16)
+
+]]></system-out>
+    <system-err><![CDATA[Starting ChromeDriver (v2.10.267521) on port 5418
+Only local connections are allowed.
+Starting ChromeDriver (v2.10.267521) on port 13395
+Only local connections are allowed.
+]]></system-err>
+  </testcase>
+</testsuite>

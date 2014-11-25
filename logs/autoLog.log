@@ -1,0 +1,633 @@
+2014-10-09 00:38:10  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 00:38:10  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 00:38:29  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 00:38:30  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 00:38:30  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 00:38:31  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 00:38:33  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 00:38:34  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub1
+2014-10-09 00:38:34  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 00:38:34  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 00:38:35  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 00:38:37  INFO (Log.java:info:31) - Shipping City picked from Excel is monttreal
+2014-10-09 00:38:37  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 00:38:37  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 00:38:39  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 00:38:39  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 00:38:48  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 00:39:17  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 00:39:17  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 00:39:19  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 00:39:19  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 00:39:37  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 00:39:38  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 00:39:38  INFO (Log.java:info:31) - Last Name picked from Excel is 
+2014-10-09 00:39:39  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c2@mailinator.com
+2014-10-09 00:39:40  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 00:39:41  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub2
+2014-10-09 00:39:42  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 00:39:42  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 00:39:43  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 00:39:43  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 00:45:18  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 00:45:18  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 00:45:31  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 00:48:43  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 00:48:43  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 00:49:01  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 00:49:01  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 00:49:02  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 00:49:03  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 00:49:04  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 00:49:05  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub1
+2014-10-09 00:49:05  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 00:49:06  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 00:49:07  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 00:49:08  INFO (Log.java:info:31) - Shipping City picked from Excel is monttreal
+2014-10-09 00:49:09  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 00:49:09  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 00:49:10  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 00:49:11  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 00:49:19  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 00:49:21  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 00:49:21  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 00:55:21  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 00:55:21  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 00:55:34  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 00:57:14  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 00:57:14  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 00:57:29  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 00:57:31  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 00:57:32  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 00:58:59  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 00:58:59  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 00:59:37  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 00:59:38  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 00:59:43  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 00:59:44  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 00:59:44  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 00:59:45  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 00:59:46  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 00:59:47  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub1
+2014-10-09 00:59:48  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 00:59:48  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 00:59:49  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 00:59:50  INFO (Log.java:info:31) - Shipping City picked from Excel is monttreal
+2014-10-09 01:00:01  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 01:00:03  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 01:00:03  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 01:00:12  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 01:00:23  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 01:00:23  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 01:00:26  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 01:00:26  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 01:00:43  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 01:00:44  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 01:00:44  INFO (Log.java:info:31) - Last Name picked from Excel is 
+2014-10-09 01:00:45  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c2@mailinator.com
+2014-10-09 01:00:46  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 01:00:47  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub2
+2014-10-09 01:00:48  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 01:00:48  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 01:00:49  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 01:00:51  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 01:01:02  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 01:01:04  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 01:01:04  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 01:01:15  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 01:01:16  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 01:01:16  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 01:01:19  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 01:01:19  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 01:01:21  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:21:13  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:21:13  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:21:29  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 12:21:29  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:21:30  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:21:30  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 12:21:33  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:21:33  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:21:52  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 12:21:52  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:21:54  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:21:54  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 12:21:57  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:21:57  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:21:57  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:34:14  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:34:14  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:34:34  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 12:34:34  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:34:35  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:34:35  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 12:43:32  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:43:32  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:43:53  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 12:43:53  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:43:54  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:43:54  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 12:45:38  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:45:38  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:45:58  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 12:45:58  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:46:00  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:46:00  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 12:47:46  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:47:46  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:48:07  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 12:48:07  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:48:09  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:48:09  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 12:58:00  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:58:00  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:58:14  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:58:15  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:58:15  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 12:58:18  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 12:58:18  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 12:58:35  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 12:58:35  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 12:58:37  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 12:58:37  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:05:26  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:05:26  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:05:41  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:05:41  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:05:43  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:05:43  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:08:36  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:08:36  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:08:52  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:08:52  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:08:54  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:08:54  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:11:28  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:11:28  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:11:49  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:12:00  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:12:01  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:12:01  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:12:04  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:12:04  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:12:25  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:12:35  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:12:36  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:12:36  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:16:15  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:16:15  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:16:38  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:16:48  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:16:50  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:16:50  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:16:53  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:16:53  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:17:06  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:19:31  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:19:31  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:19:37  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:24:51  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:24:51  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:25:06  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:25:07  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:25:07  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:25:10  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:25:10  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:25:23  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:28:11  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:28:11  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:28:33  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:34:24  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:34:24  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:34:46  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:34:56  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:34:57  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:34:57  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:38:08  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:38:08  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:38:08  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 13:38:08  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 13:39:28  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:39:28  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 13:39:28  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 13:39:30  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 13:39:30  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 13:49:12  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:21:06  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:21:06  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:21:52  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:22:15  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:22:21  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:22:21  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:22:29  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:22:29  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:22:35  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:27:24  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:27:24  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:28:05  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:28:28  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:28:30  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:28:30  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:28:37  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:28:37  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:28:41  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:30:22  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:30:22  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:31:06  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:31:17  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:31:17  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 14:31:18  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 14:31:19  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:31:19  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub1
+2014-10-09 14:31:20  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:31:20  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:31:20  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:31:21  INFO (Log.java:info:31) - Shipping City picked from Excel is monttreal
+2014-10-09 14:31:22  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:31:22  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:31:23  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:31:23  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:31:31  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:31:32  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:31:32  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:31:40  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:31:40  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:32:18  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:32:32  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:32:32  INFO (Log.java:info:31) - Last Name picked from Excel is 
+2014-10-09 14:32:33  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c2@mailinator.com
+2014-10-09 14:32:34  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:32:34  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub2
+2014-10-09 14:32:35  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:32:35  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:32:35  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:32:36  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:32:37  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:32:37  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:32:38  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:32:38  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:32:45  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:32:47  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:32:47  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:32:55  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:32:55  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:33:34  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:33:49  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:33:49  INFO (Log.java:info:31) - Last Name picked from Excel is club3
+2014-10-09 14:33:50  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c3@mailinator.com
+2014-10-09 14:33:51  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:33:51  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub3
+2014-10-09 14:33:52  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:33:52  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:33:53  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:33:53  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:33:54  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:33:54  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:33:55  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:33:55  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:34:01  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:34:03  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:34:03  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:34:11  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:34:11  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:34:45  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:34:57  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:34:57  INFO (Log.java:info:31) - Last Name picked from Excel is club4
+2014-10-09 14:34:57  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c4@mailinator.com
+2014-10-09 14:34:58  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:34:59  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub4
+2014-10-09 14:34:59  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:34:59  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:35:00  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:35:01  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:35:01  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:35:01  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:35:02  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:35:02  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:35:04  INFO (Log.java:info:31) - Coach Id provided from Excel is 99
+2014-10-09 14:35:11  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:35:12  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:35:12  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:35:20  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:35:20  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:36:05  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:36:16  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:36:16  INFO (Log.java:info:31) - Last Name picked from Excel is club6
+2014-10-09 14:36:17  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c6@mailinator.com
+2014-10-09 14:36:18  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:36:18  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub6
+2014-10-09 14:36:19  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:36:19  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:36:19  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:36:20  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:36:21  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:36:22  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:36:22  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:36:23  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:36:24  INFO (Log.java:info:31) - Coach Id provided from Excel is 994
+2014-10-09 14:36:31  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:36:32  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:36:32  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:38:11  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:38:11  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:38:33  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:38:34  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:38:34  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 14:38:35  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 14:38:37  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:38:38  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub1
+2014-10-09 14:38:38  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:38:39  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:38:40  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:38:42  INFO (Log.java:info:31) - Shipping City picked from Excel is monttreal
+2014-10-09 14:38:43  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:38:44  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:38:46  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:38:47  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:38:59  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:39:59  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:39:59  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:40:14  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:40:26  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:40:26  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:40:29  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:40:29  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:40:49  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:40:50  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:40:50  INFO (Log.java:info:31) - Last Name picked from Excel is 
+2014-10-09 14:40:51  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c2@mailinator.com
+2014-10-09 14:40:52  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:40:53  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub2
+2014-10-09 14:40:54  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:40:55  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:40:56  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:40:58  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:40:59  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:40:59  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:41:01  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:41:02  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:41:14  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:41:16  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:41:16  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:41:18  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:41:18  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:41:19  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:46:49  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:46:49  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:47:08  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:47:09  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:47:10  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 14:47:11  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 14:47:12  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:47:13  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub1
+2014-10-09 14:47:14  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:47:14  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:47:15  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:47:17  INFO (Log.java:info:31) - Shipping City picked from Excel is monttreal
+2014-10-09 14:47:17  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:47:18  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:47:20  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:47:20  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:47:34  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:47:36  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:47:36  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:47:38  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:47:38  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:47:57  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:47:58  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:47:58  INFO (Log.java:info:31) - Last Name picked from Excel is 
+2014-10-09 14:47:59  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c2@mailinator.com
+2014-10-09 14:48:01  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:48:02  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub2
+2014-10-09 14:48:02  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:48:03  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:48:03  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:48:05  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:48:06  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:48:06  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:48:08  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:48:08  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:48:20  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:48:22  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:48:22  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:48:25  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:48:25  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:48:44  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:48:45  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:48:46  INFO (Log.java:info:31) - Last Name picked from Excel is club3
+2014-10-09 14:48:47  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c3@mailinator.com
+2014-10-09 14:48:48  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:48:50  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub3
+2014-10-09 14:48:50  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:48:51  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:48:51  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:48:53  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:49:05  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:49:06  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:49:07  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:49:19  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:49:20  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:49:20  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:49:24  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:49:24  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:49:41  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:49:43  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:49:43  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 14:49:46  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 14:49:46  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 14:50:08  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 14:50:09  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 14:50:09  INFO (Log.java:info:31) - Last Name picked from Excel is club6
+2014-10-09 14:50:10  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c6@mailinator.com
+2014-10-09 14:50:12  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 14:50:13  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub6
+2014-10-09 14:50:13  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 14:50:14  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 14:50:15  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 14:50:16  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 14:50:17  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 14:50:18  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 14:50:20  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 14:50:20  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 14:50:24  INFO (Log.java:info:31) - Coach Id provided from Excel is 994
+2014-10-09 14:50:35  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --PASSED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 14:50:36  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 14:50:36  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 15:26:44  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:26:45  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:26:45  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:28:14  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:28:16  INFO (Log.java:info:31) - First Name picked from Excel is HT3MzlKNVa5jDQbo7d4F4kaNOlT0Gt
+2014-10-09 15:28:18  INFO (Log.java:info:31) - Last Name picked from Excel is CbZerWmUIJClPEUBeYqyiRilb
+2014-10-09 15:28:19  INFO (Log.java:info:31) - Email picked from Excel is xn-ijz3ek3szi6xq3vra-@test.org
+2014-10-09 15:28:20  INFO (Log.java:info:31) - Password picked from Excel is 16313
+2014-10-09 15:28:22  INFO (Log.java:info:31) - ScreenName picked from Excel is KFXWROQrjzhatflgLReOcJfrC
+2014-10-09 15:28:23  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:28:23  INFO (Log.java:info:31) - Phone no picked from Excel is 4174494137
+2014-10-09 15:28:24  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:28:26  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:28:26  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:28:27  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:28:29  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:28:29  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:28:40  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:28:42  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:28:42  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:33:57  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:33:59  INFO (Log.java:info:31) - First Name picked from Excel is F1jybMnaPaQd8EefDrL1MwxsrFk1te
+2014-10-09 15:34:01  INFO (Log.java:info:31) - Last Name picked from Excel is zMOsohoeSskw4Ku5uz4QhrJFi
+2014-10-09 15:34:02  INFO (Log.java:info:31) - Email picked from Excel is -983pfuet50v_mzj5trgf@test.org
+2014-10-09 15:34:03  INFO (Log.java:info:31) - Password picked from Excel is 51939
+2014-10-09 15:34:06  INFO (Log.java:info:31) - ScreenName picked from Excel is kHmSGGllxVUhLgHMxeduEVdak
+2014-10-09 15:34:07  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:34:08  INFO (Log.java:info:31) - Phone no picked from Excel is 2740814463
+2014-10-09 15:34:08  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:34:11  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:34:12  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:34:13  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:34:14  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:34:15  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:34:23  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:34:25  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:34:25  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:35:50  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:36:48  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:36:50  INFO (Log.java:info:31) - First Name picked from Excel is IAX12jLscLSw5Ir0N4H7sBq33aHVgS
+2014-10-09 15:36:51  INFO (Log.java:info:31) - Last Name picked from Excel is sVGxS7acpUaFthIWwZO3JZ9dg
+2014-10-09 15:36:52  INFO (Log.java:info:31) - Email picked from Excel is c5kwxrus41u__.d1vwf32@test.org
+2014-10-09 15:36:54  INFO (Log.java:info:31) - Password picked from Excel is 12604
+2014-10-09 15:36:56  INFO (Log.java:info:31) - ScreenName picked from Excel is ufCHwAAKKcxCIylNdLPvvgxyY
+2014-10-09 15:36:57  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:36:57  INFO (Log.java:info:31) - Phone no picked from Excel is 9747733521
+2014-10-09 15:36:58  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:37:00  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:37:00  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:37:01  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:37:02  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:37:03  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:37:13  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:37:14  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:37:14  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:41:11  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:41:13  INFO (Log.java:info:31) - First Name picked from Excel is iO85h3kRb9h3e9zyFEpPFyQmA6VyO6
+2014-10-09 15:41:15  INFO (Log.java:info:31) - Last Name picked from Excel is ZLAEgq4rmGql4jT6qpTeFI8S3
+2014-10-09 15:41:15  INFO (Log.java:info:31) - Email picked from Excel is osye0.yjyeakqwqp9bulc@test.org
+2014-10-09 15:41:17  INFO (Log.java:info:31) - Password picked from Excel is 20478
+2014-10-09 15:41:19  INFO (Log.java:info:31) - ScreenName picked from Excel is UCxoIbrIfNAAurdkDpOJqJwwW
+2014-10-09 15:41:20  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:41:20  INFO (Log.java:info:31) - Phone no picked from Excel is 0256114459
+2014-10-09 15:41:20  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:41:23  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:41:23  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:41:24  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:41:26  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:41:26  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:41:41  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:41:42  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:41:42  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:42:56  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:42:57  INFO (Log.java:info:31) - First Name picked from Excel is aif08WoGjBwDfwuWVGBr260t87JP9c
+2014-10-09 15:42:59  INFO (Log.java:info:31) - Last Name picked from Excel is tNYTiwf6JWmEQo4gtqRdjO3Qa
+2014-10-09 15:43:00  INFO (Log.java:info:31) - Email picked from Excel is 0wy.v6y155mej76yy-._i@test.org
+2014-10-09 15:43:01  INFO (Log.java:info:31) - Password picked from Excel is 44694
+2014-10-09 15:43:04  INFO (Log.java:info:31) - ScreenName picked from Excel is wLmjLzuXCKgnmCtaZlHoOOVjv
+2014-10-09 15:43:04  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:43:05  INFO (Log.java:info:31) - Phone no picked from Excel is 0665227031
+2014-10-09 15:43:05  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:43:08  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:43:09  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:43:09  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:43:11  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:43:11  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:43:27  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:43:29  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:43:29  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:46:47  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:46:49  INFO (Log.java:info:31) - First Name picked from Excel is 2a8wueDpVJU4cChVhiVgajq41tbuxe
+2014-10-09 15:46:50  INFO (Log.java:info:31) - Last Name picked from Excel is 3IHZoj0ChDaZ0bxNQatdDmH8e
+2014-10-09 15:46:51  INFO (Log.java:info:31) - Email picked from Excel is t4lh4qpknmrosi8ku5y7s@test.org
+2014-10-09 15:46:52  INFO (Log.java:info:31) - Password picked from Excel is 15125
+2014-10-09 15:46:55  INFO (Log.java:info:31) - ScreenName picked from Excel is JMkZCuEFoDIxpXansPqAUFLfY
+2014-10-09 15:46:55  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:46:56  INFO (Log.java:info:31) - Phone no picked from Excel is 8724279616
+2014-10-09 15:46:56  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:46:58  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:46:59  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:46:59  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:47:01  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:47:01  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:47:32  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --PASSED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:47:33  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:47:33  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:49:24  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:49:26  INFO (Log.java:info:31) - First Name picked from Excel is OkuU3ook7r7zWBbWX8Fj0VLxwH2eel
+2014-10-09 15:49:28  INFO (Log.java:info:31) - Last Name picked from Excel is 06syId3ljsyFj3WjyNSDJMGxs
+2014-10-09 15:49:29  INFO (Log.java:info:31) - Email picked from Excel is 2tptrbp5en6apj_xxy8_u@test.org
+2014-10-09 15:49:30  INFO (Log.java:info:31) - Password picked from Excel is 07650
+2014-10-09 15:49:32  INFO (Log.java:info:31) - ScreenName picked from Excel is zcpoXySOZGTIOvTHyYhlTysRR
+2014-10-09 15:49:33  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:49:33  INFO (Log.java:info:31) - Phone no picked from Excel is 7706986877
+2014-10-09 15:49:34  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:49:36  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:49:37  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:49:37  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:49:39  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:49:39  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:49:58  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --PASSED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:49:59  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:49:59  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 15:53:34  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 15:53:36  INFO (Log.java:info:31) - First Name picked from Excel is 6vh6GuSO7sqGCTnp5PCjWkqoNtCEOM
+2014-10-09 15:53:37  INFO (Log.java:info:31) - Last Name picked from Excel is rcTJEXs5SVJUe0otfthm8ZkRG
+2014-10-09 15:53:38  INFO (Log.java:info:31) - Email picked from Excel is mibj4mn3r14d.tp27o-ww@test.org
+2014-10-09 15:53:39  INFO (Log.java:info:31) - Password picked from Excel is 44600
+2014-10-09 15:53:42  INFO (Log.java:info:31) - ScreenName picked from Excel is oOPyzBCOgWZDUeoqteDCPVOUp
+2014-10-09 15:53:42  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 15:53:43  INFO (Log.java:info:31) - Phone no picked from Excel is 1042605133
+2014-10-09 15:53:43  INFO (Log.java:info:31) - Shipping Country picked from Excel is United States
+2014-10-09 15:53:46  INFO (Log.java:info:31) - Shipping City picked from Excel is seattle
+2014-10-09 15:53:47  INFO (Log.java:info:31) - Shipping State picked from Excel is Washington
+2014-10-09 15:53:47  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is 98106
+2014-10-09 15:53:48  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 15:53:49  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4111111111111111
+2014-10-09 15:54:16  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --PASSED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 15:54:18  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 15:54:18  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of newClubRegistrationUsingDP2 #################################
+2014-10-09 16:03:10  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 16:03:10  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 16:03:32  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 16:03:33  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 16:03:34  INFO (Log.java:info:31) - Last Name picked from Excel is club1
+2014-10-09 16:03:35  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c1@mailinator.com
+2014-10-09 16:03:37  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 16:03:38  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub1
+2014-10-09 16:03:39  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 16:03:40  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 16:03:41  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 16:03:44  INFO (Log.java:info:31) - Shipping City picked from Excel is monttreal
+2014-10-09 16:03:45  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 16:03:45  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 16:03:48  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 16:03:49  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 16:04:07  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 16:04:08  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 16:04:08  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################
+2014-10-09 16:04:11  INFO (Log.java:startTestCase:16) -                                                                                         
+2014-10-09 16:04:11  INFO (Log.java:startTestCase:17) - ################################# -S-T-A-R-T- of Test Case:: DuplicateClubRegistrationUsingCSVFile#################################
+2014-10-09 16:04:33  INFO (Log.java:info:31) - Club SignUp found
+2014-10-09 16:04:34  INFO (Log.java:info:31) - First Name picked from Excel is 19SepC
+2014-10-09 16:04:35  INFO (Log.java:info:31) - Last Name picked from Excel is 
+2014-10-09 16:04:37  INFO (Log.java:info:31) - Email picked from Excel is rj_190914_c2@mailinator.com
+2014-10-09 16:04:40  INFO (Log.java:info:31) - Password picked from Excel is 11111
+2014-10-09 16:04:43  INFO (Log.java:info:31) - ScreenName picked from Excel is 19Sepclub2
+2014-10-09 16:04:44  INFO (Log.java:info:31) - DOB picked from Excel is 1978
+2014-10-09 16:04:46  INFO (Log.java:info:31) - Phone no picked from Excel is 1111111111
+2014-10-09 16:04:48  INFO (Log.java:info:31) - Shipping Country picked from Excel is Canada
+2014-10-09 16:04:52  INFO (Log.java:info:31) - Shipping City picked from Excel is montreal
+2014-10-09 16:04:55  INFO (Log.java:info:31) - Shipping State picked from Excel is Quebec
+2014-10-09 16:04:56  INFO (Log.java:info:31) - Shipping ZIP picked from Excel is h3b5l1
+2014-10-09 16:05:00  INFO (Log.java:info:31) - Credit Card picked from Excel is Visa
+2014-10-09 16:05:02  INFO (Log.java:info:31) - Credit Card Number picked from Excel is 4222222222222
+2014-10-09 16:05:17  INFO (Log.java:info:31) - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX --FAILED-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+2014-10-09 16:05:19  INFO (Log.java:endTestCase:23) -                                                                                         
+2014-10-09 16:05:19  INFO (Log.java:endTestCase:24) - ################################# -E-N-D- of DuplicateClubRegistrationUsingCSVFile #################################

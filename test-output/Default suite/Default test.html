@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Mon Oct 20 18:27:20 IST 2014</td>
+</tr>
+<tr><td>Total time:</td><td>0 seconds (794 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.seleniumtests.cucumbertest.java.RunCucumberTests.runCukes()'><b>runCukes</b><br>Test class: com.seleniumtests.cucumbertest.java.RunCucumberTests<br>Test method: Example of using TestNGCucumberRunner to invoke Cucumber<br/>
+<a href="#Output-691836100" onClick='toggleBox("Output-691836100", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-691836100" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-691836100">
+<div "featureFile">Feature File: src&#x2F;test&#x2F;resources&#x2F;com&#x2F;seleniumtests&#x2F;cucumbertest&#x2F;features&#x2F;ClubRegNew.feature</div><br/>
+<div "feature">Feature: ClubRegistration</div><br/>
+<div "result">Given  I want to open the browser (undefined)</div><br/>
+<div "result">And  I visit the https:&#x2F;&#x2F;tbbqabeta.productpartners.com url (undefined)</div><br/>
+<div "result">And  I visit to the Signup Page (undefined)</div><br/>
+<div "result">When  I click on the club signup (undefined)</div><br/>
+<div "scenario">Scenario: DataEntryValid</div><br/>
+<div "result">Then  i do submit with valid form entry (undefined)</div><br/>
+<div "result">And  i get welcome page (undefined)</div><br/>
+<div "result">Given  I want to open the browser (undefined)</div><br/>
+<div "result">And  I visit the https:&#x2F;&#x2F;tbbqabeta.productpartners.com url (undefined)</div><br/>
+<div "result">And  I visit to the Signup Page (undefined)</div><br/>
+<div "result">When  I click on the club signup (undefined)</div><br/>
+<div "scenario">Scenario: DataEntryInValid</div><br/>
+<div "result">Then  i do submit with Invalid form entry (undefined)</div><br/>
+<div "result">And  i get error page (undefined)</div><br/>
+</div>
+</td>
+<td></td>
+<td>0</td>
+<td>com.seleniumtests.cucumbertest.java.RunCucumberTests@7fd91c09</td></tr>
+</table><p>
+</body>
+</html>
