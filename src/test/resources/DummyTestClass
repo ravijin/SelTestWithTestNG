@@ -1,0 +1,110 @@
+/**   
+* This class contains all the Corp Actions module cpr tests
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.tests;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Month;
+import java.time.MonthDay;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.http.client.ClientProtocolException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import com.ice.vaf.dataobjects.AdvanceSearchPageData;
+import com.ice.vaf.dataobjects.TransparencyPageData;
+import com.ice.vaf.dataobjects.VCAPageData;
+import com.ice.vaf.driverfactory.DriverFactory;
+import com.ice.vaf.pages.AdvanceSearchPage;
+import com.ice.vaf.pages.BasePage;
+import com.ice.vaf.pages.CorpActionsHomePage;
+import com.ice.vaf.pages.CorpActionsPage;
+import com.ice.vaf.pages.GnDPage;
+import com.ice.vaf.pages.HomePage;
+import com.ice.vaf.pages.PageCommonUtils;
+import com.ice.vaf.pages.PortfolioPage;
+import com.ice.vaf.pages.TransparencyPage;
+import com.ice.vaf.utilities.CustomVerification;
+import com.ice.vaf.utilities.DataBaseAccessor;
+import com.ice.vaf.utilities.Log;
+import com.ice.vaf.utilities.CommonUtils;
+
+public class VCAPageTest extends CommonTestClassFunctions{
+	
+ 	DataBaseAccessor dbAccessor;
+ 	
+ 	String appUserName;
+ 	String appPassword;
+ 	Object[][] testData_VCA_03;
+ 	Object[][] testData_VCA_48;
+ 	Object[][] testData_VCA_49;
+ 	Object[][] testData_VCA_51;
+ 	
+ 	// Creating DataBase connection for Corp Actions
+ 	@Parameters({ "appUserName","appUserName1","appPassword", "dbHost", "dbPort", "dbUserName", "dbPassword", "dbName" })
+ 	@BeforeClass
+ 	public void setup(String appUserName, String appUserName1, String appPassword, String dbHost, int dbPort, String dbUserName, String dbPassword, String dbName) throws Exception{
+ 		this.appUserName = appUserName;
+ 		this.appPassword = appPassword;
+ 		dbAccessor = new DataBaseAccessor(dbHost, dbPort, dbUserName, dbPassword, dbName);
+ 		testData_VCA_03 = VCAPageData.VCA_03();
+ 		testData_VCA_48 = VCAPageData.VCA_48();
+ 		testData_VCA_49 = VCAPageData.VCA_49();
+ 		testData_VCA_51 = VCAPageData.VCA_51();
+ 	}
+ 	
+ 	// Closing DataBase connection for GnD
+ 	@AfterClass
+ 	public void cleanUp() throws Exception{
+ 		dbAccessor.closeDbConnection(dbAccessor.getDbConnection());
+ 	}
+ 	
+	
+ 	@Test
+	public void VCA_01_verifyLandingPage() {
+ 		CustomVerification cv = new CustomVerification(testName,driver);
+ 		
+		HomePage homepage = vantageLogin(driver,appUserName,appPassword,appURL);
+		CorpActionsHomePage corpactions = homepage.clickCorpActions();
+		corpactions.validatePageHeader(cv);
+		corpactions.validateShowPortfolioDropDown(cv);
+		
+		//String currentDate=new SimpleDateFormat("d").format(new Date());
+		String defaultDate = CommonUtils.getCurrentDate();	//  dd/mm/yyyy format
+		String defaultCalReportType = "Critical Date Report";
+		corpactions.validateDateFieldsForAllReports(cv,defaultDate);
+		
+		corpactions.validateEventsVisibilityForAllReports(cv);
+		corpactions.validateTopRightButtons(cv);
+		corpactions.validateRightCalendarDropDowns(cv);
+	
+		List<WebElement> report = corpactions.getAllEvents(cv,defaultCalReportType);
+		String event_text=report.get(0).getText();
+		String reportEventCount=event_text.substring(event_text.indexOf("(")+1, event_text.indexOf(")"));
+		//System.out.println(reportEventCount);
+		String calendarBoxEventCount=corpactions.getEventCountFromRightCalendar(cv,defaultDate.split("/")[0]);
+		
+		cv.verifyEquals("Right Calendar event count does not match with leftside report's AllEvents count for default landing", calendarBoxEventCount, reportEventCount);
+		cv.checkForVerificationErrors();
+ 	}
