@@ -1,0 +1,2609 @@
+DriverFact:-
+
+/**   
+* This class is used to initiate web driver & browser
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.driverfactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
+import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+
+import com.ice.vaf.dataobjects.LiquidityPageData;
+import com.ice.vaf.utilities.CaptureScreenshot;
+import com.ice.vaf.utilities.CommonUtils;
+import com.ice.vaf.utilities.DataBaseAccessor;
+import com.ice.vaf.utilities.Log;
+import com.ice.vaf.utilities.SshTunnel;
+
+
+public class DriverFactory implements CommonUtils{
+	
+	protected WebDriver driver;
+	protected String appURL;
+	protected String testName;
+	
+	//private String sauce = null;
+	
+	public static String cwd = CommonUtils.getCwd();
+	public static String downloadDir = cwd + "\\Downloads";
+	public static String screenshotDir = cwd + "\\Screenshots";
+	public static final String USERNAME = "";
+	public static final String ACCESS_KEY = "";
+	public static final String URL = "https://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:443/wd/hub";
+	//public static final String URL = "http://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:8080/wd/hub";
+  
+	//For running on Locall (With Proxy & not on VDI)
+	//public static final String URL = "http://"+USERNAME+":"+ACCESS_KEY+"@ondemand.saucelabs.com:80/wd/hub";
+	
+	@BeforeSuite
+    public void deleteFilesFromLastRun(){
+		CommonUtils.deleteFilesFromDir(screenshotDir);
+		CommonUtils.deleteFilesFromDir(downloadDir);
+		
+		//sauce=System.getProperty("sauce");
+	}
+	
+ 	@AfterSuite
+ 	public void cleanUp() throws Exception{
+ 		SshTunnel.closeConnection();
+ 	}
+ 	
+	@BeforeMethod
+	@Parameters("appURL")
+	public void setEnv(@Optional("") String appURL, Method method) {
+		this.appURL = appURL;
+		this.testName = method.getName();
+		System.out.println("TestCaseName is: "+this.testName);
+	}
+
+	@BeforeMethod
+	@Parameters({"browser","port","sauce"})
+	public void launchBrowser(@Optional("FF") String browser,@Optional("4444") String port, String sauce) throws MalformedURLException{
+		if (browser.equalsIgnoreCase("Chrome")) {
+		final File file = new File("src/main/resources/drivers/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				file.getAbsolutePath());
+		if(0 != CommonUtils.createDirectory(downloadDir))
+			Log.error("Failed to create download dir " + downloadDir);
+		
+		
+		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+		chromePrefs.put("download.default_directory", downloadDir);
+		chromePrefs.put("profile.default_content_settings.popups", 0);
+		chromePrefs.put("download.prompt_for_download", "false");
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", chromePrefs);
+		DesiredCapabilities chrome = DesiredCapabilities.chrome();
+		chrome.setCapability("platform", "Windows 7");
+		chrome.setCapability("version", "56.0");
+		chrome.setCapability(ChromeOptions.CAPABILITY, options);
+		if(sauce.equalsIgnoreCase("yes"))
+			driver=new RemoteWebDriver(new URL(URL),chrome);
+		else if(sauce.equalsIgnoreCase("no"))
+			driver = new ChromeDriver(chrome);
+		driver.manage().window().maximize();
+
+		}else if (browser.equalsIgnoreCase("FF")) {
+			//System.setProperty("webdriver.firefox.bin","D:\\Users\\xxxxx\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+			
+			//System.setProperty("webdriver.firefox.bin","D:\\Users\\xxxxx\\AppData\\Local\\Mozilla Firefox\\firefox.exe");
+			 System.setProperty("webdriver.gecko.driver","D:\\Softwares\\geckodriver-v0.13.0-win64\\geckodriver.exe");
+			 //System.setProperty("webdriver.firefox.marionette","D:\\Softwares\\geckodriver-v0.13.0-win64\\geckodriver.exe");
+			 
+			if(0 != CommonUtils.createDirectory(downloadDir))
+				Log.error("Failed to create download dir " + downloadDir);
+			FirefoxProfile profile = new FirefoxProfile();
+			profile.setPreference("browser.download.dir", downloadDir);
+			profile.setPreference("browser.download.folderList", 2);
+			profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd,application/octet-stream,text/xlsx,application/xlsx,text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml,application/pdf,*/*");
+			profile.setPreference("browser.download.manager.showWhenStarting",false);
+			DesiredCapabilities firefox = DesiredCapabilities.firefox();
+			firefox.setCapability("elementScrollBehavior", 1);
+			firefox.setCapability("overlappingCheckDisabled", true);
+			firefox.setCapability("platform", "Windows 7");
+			firefox.setCapability(FirefoxDriver.PROFILE, profile);
+			firefox.setCapability("version", "52.0");
+			
+			firefox.setCapability("marionette", true);
+			
+			if(sauce.equalsIgnoreCase("yes"))
+				driver=new RemoteWebDriver(new URL(URL),firefox);
+			else if(sauce.equalsIgnoreCase("no"))
+				driver = new FirefoxDriver(firefox);
+			driver.manage().window().maximize();
+
+		}else if (browser.equalsIgnoreCase("IE")) {
+			final File file = new File("src/main/resources/drivers/IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver",
+					file.getAbsolutePath());
+			DesiredCapabilities ie = DesiredCapabilities.internetExplorer();
+			ie.setCapability("version", "11.0");
+			if(sauce.equalsIgnoreCase("yes"))
+				driver=new RemoteWebDriver(new URL(URL),ie);
+			else if(sauce.equalsIgnoreCase("no"))
+				driver = new InternetExplorerDriver();
+			driver.manage().window().maximize();
+		}
+	}
+
+	@AfterMethod
+	public void closeBrowser(ITestResult result) throws IOException {
+		try {
+			if (!result.isSuccess()) {
+				CaptureScreenshot.getscreenshot("AssertFailure_Screenshot",testName,driver,screenshotDir);
+			}
+			else if(result.isSuccess()){
+				CaptureScreenshot.getscreenshot("AssertPass_Screenshot",testName,driver,screenshotDir);
+			}
+		} catch (Exception e) {
+			System.out.println("Error encountered While Taking Screenshot");
+		}
+		finally{
+			if (driver != null){
+				try{
+				driver.close();
+				driver.quit();
+				}catch(Exception e)
+					{
+					Log.trace(e.fillInStackTrace());
+					}
+			}
+		}
+	}
+	
+ 	
+	public void goToURL(String url, WebDriver webDriver)
+	{	
+	webDriver.get(url);	
+	}
+	
+}
+*****************************************************************************************************************************************
+
+BasePage:-
+
+package com.ice.vaf.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
+
+import com.ice.vaf.utilities.CommonUtils;
+import com.ice.vaf.utilities.Log;
+
+public abstract class BasePage extends LoadableComponent<BasePage>{
+
+	@CacheLookup
+	@FindBy(xpath = "//a[contains(@title,'Log Out')]")
+	WebElement logoutlink;
+	
+	@FindBy(xpath = "//a[@href='/corpactionhome'][text()='Corp Actions']")
+	WebElement corpActionsLink;
+	
+	//@FindBy(xpath = "//a[@href='/advancedsearch'][text()='advanced']")
+	@FindBy(xpath = "//a[contains(@href,'/advancedsearch')][text()='advanced']")
+	WebElement advanceSearchLink;
+	
+	private WebDriver driver;
+	//private WebElement logout;
+	
+	public BasePage(WebDriver driver) {
+		this.driver = driver;
+		//this.logout = logout;
+	}
+	public BasePage(){}
+
+	
+	public LoginPage vantageLogout(){
+		System.out.println("Calling action clickLogoutLink");
+		Log.info("Calling action clickLogoutLink");
+		logoutlink.click();
+		return new LoginPage(driver);
+		//return PageFactory.initElements(driver, LoginPage.class);
+	}
+
+	
+	public CorpActionsHomePage clickCorpActions() {
+		CommonUtils.showMessageAll("Calling action clickCorpActions");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(corpActionsLink));
+		corpActionsLink.click();
+		return new CorpActionsHomePage(driver);
+		}
+	
+	
+	public AdvanceSearchPage clickAdvanceSearch() {
+		System.out.println("Calling action clickAdvanceSearch");
+		Log.info("Calling action clickAdvanceSearch");
+		Reporter.log("Calling action clickAdvanceSearch");
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(advanceSearchLink));
+		advanceSearchLink.click();
+		return new AdvanceSearchPage(driver);
+		}
+}
+******************************************************************************************************************************************
+Welcome Page:-
+
+/**   
+* This class contains all the Page elements & functions for WelcomePageTest
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.pages;
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+//import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Reporter;
+
+import com.ice.vaf.utilities.CommonUtils;
+import com.ice.vaf.utilities.CustomVerification;
+import com.ice.vaf.utilities.Log;
+
+
+public class WelcomePage extends BasePage implements PageCommonUtils, CommonUtils{
+
+	@CacheLookup
+	@FindBy(css = "a[href='/login']")
+	WebElement loginLink;
+	
+	private WebDriver driver;
+	CustomVerification cv = new CustomVerification();
+	
+	public WelcomePage(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		//this.get();
+		PageFactory.initElements(driver, this);
+		this.get();
+		System.out.println("WelcomePage constructor called");
+		Reporter.log("WelcomePage constructor called");
+		Log.info("WelcomePage constructor called");
+	}	
+	public WelcomePage(){}
+	
+	@Override
+	protected void isLoaded() throws Error {
+		PageCommonUtils.waitForPageRender(driver,1);
+		//AppLogger.assertLogEquals(PageCommonUtils.getCurrentUrl(driver),url,"Welcome page is not loaded");
+		
+		//String title = driver.getTitle();
+		String title = PageCommonUtils.getTitle(driver);
+		System.out.println("Loading Page Title is: "+title);
+		cv.verifyTrue("This is not WelcomePage", title.equalsIgnoreCase("Welcome | Interactive Data: Vantage"));
+		cv.checkForVerificationErrors();
+		System.out.println("WelcomePage.isLoaded called");
+		Reporter.log("WelcomePage.isLoaded called");
+		Log.info("WelcomePage.isLoaded called");
+	}
+
+	@Override
+	protected void load() {
+		System.out.println("WelcomePage.load called");
+		Reporter.log("WelcomePage.load called");
+		Log.info("WelcomePage.load called");
+	}
+
+	public LoginPage clickLoginLink() {
+		System.out.println("Calling action clickLoginLink");
+		Log.info("Calling action clickLoginLink");
+		PageCommonUtils.isElementClickable(driver, loginLink);
+		loginLink.click();
+		//return PageFactory.initElements(driver, LoginPage.class);
+		return new LoginPage(driver);
+	}
+}
+
+*****************************************************************************************************************************************
+HomePage:-
+
+/**   
+* This class contains all the Page elements & functions for HomePageTest
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.pages;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
+
+import com.ice.vaf.driverfactory.DriverFactory;
+import com.ice.vaf.utilities.CommonUtils;
+import com.ice.vaf.utilities.CustomVerification;
+import com.ice.vaf.utilities.Log;
+
+public class HomePage extends BasePage implements PageCommonUtils,CommonUtils{
+
+	@CacheLookup
+	@FindBy(id = "heatmap")
+	WebElement heatmap;
+	
+	@CacheLookup
+	//@FindBy(xpath = "html/body/nav/div[2]/ul[2]/li[6]/a")
+	@FindBy(xpath = "//a[@title='Services & Settings']")
+	WebElement SettingsIcon;
+	
+	@CacheLookup
+	//@FindBy(xpath = "html/body/nav/div[2]/ul[2]/li[6]/ul/li[17]/a")
+	@FindBy(xpath = "//a[text()='My Account']")
+	WebElement MyAccountOption;
+	
+	@CacheLookup
+	//@FindBy(xpath = "//*[@class='hideOnIDC']")
+	@FindBy(xpath = "//a[@class='hideOnIDC'][text()='Details ...']")
+	WebElement Detailslinkfordefault;
+	
+	@CacheLookup
+	@FindBy(id = "header-security")
+	WebElement Searchbox;
+	
+
+	@CacheLookup
+	@FindBy(xpath = ".//*[@id='search_results']/div/div[1]/div[2]/table/tbody/tr[2]/td[1]/a")
+	WebElement SearchedIdentifier;
+
+	
+/*	@CacheLookup
+	@FindBy(xpath = "//a[contains(@title,'Log Out')]")
+	public static
+	WebElement logoutlink;*/
+
+	@CacheLookup
+	@FindBy(xpath = "//a[contains(@href,'/transparency')][text()='Evaluation']")
+	WebElement evalTab;
+	
+	@CacheLookup
+	@FindBy(id = "header-security")
+	WebElement searchField;	
+
+
+	@CacheLookup
+	@FindBy(xpath = "//div[@id='search_results']/descendant::table[1]/tbody")
+	WebElement searchResultTable;	
+
+	@FindBy(xpath = "//a[@href='/advancedsearch'][text()='advanced']")
+	WebElement advanceSearchLink;
+	
+	@FindBy(xpath = "//a[@href='/movers'][text()='Markets']")
+	WebElement marketsLink;
+	
+	@FindBy(xpath = "//a[@href='/portfolio'][text()='Portfolio']")
+	WebElement portfolioLink;
+	
+	@FindBy(xpath = "//a[@href='/corpactionhome'][text()='Corp Actions']")
+	WebElement corpActionsLink;
+	
+	@FindBy(xpath = "//a[@title='Upload']")
+	WebElement BestexUploadLink;
+	
+	@FindBy(xpath = "//a[@title='View Trade Blotter']")
+	WebElement BestexViewLink;
+	
+	@FindBy(xpath = ".//*[@id='bestex_tab_link']")
+	WebElement BestexTab;
+	
+	private WebDriver driver;
+	CustomVerification cv = new CustomVerification();
+	
+	public HomePage(WebDriver driver) {
+		super(driver);
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+		this.get();
+		System.out.println("HomePage constructor called");
+		Reporter.log("HomePage constructor called");
+		Log.info("HomePage constructor called");
+	}
+	public HomePage(){}
+
+
+	@Override
+	protected void isLoaded() throws Error {
+		PageCommonUtils.waitForPageToLoad(driver, 10);
+		String title = PageCommonUtils.getTitle(driver);
+		System.out.println("Page Title is: "+title);
+		cv.verifyTrue("This is not HomePage Title don't conatin 'Welcome |' ", title.contains("Welcome |"));
+		cv.checkForVerificationErrors();
+		System.out.println("HomePage.isLoaded called");
+		Reporter.log("HomePage.isLoaded called");
+		Log.info("HomePage.isLoaded called");
+	}
+
+	@Override
+	protected void load() {
+		System.out.println("HomePage.load called");
+		Reporter.log("LHomePage.load called");
+		Log.info("HomePage.load called");
+	}
+	
+	public HomePage verifyHeatMap() {
+		System.out.println("Calling step verifyHeatMap");
+		Log.info("Calling step verifyHeatMap");
+		//WebDriverWait wait = new WebDriverWait(driver,30);
+		//wait.until(ExpectedConditions.visibilityOf(heatmap));
+		//PageCommonUtils.isElementVisible(driver, "id", "heatmap");
+		PageCommonUtils.isElementVisible(driver, heatmap);
+		return this;
+		}
+	
+/*	public LoginPage clickLogoutLink() {
+		System.out.println("Calling action clickLogoutLink");
+		Log.info("Calling action clickLogoutLink");
+		logoutlink.click();
+		return PageFactory.initElements(driver, LoginPage.class);
+		}*/
+	
+	public EvaluationPage clickEvalTab() {
+		System.out.println("Calling action clickEvalTab");
+		Log.info("Calling action clickEvalTab");
+		PageCommonUtils.isElementClickable(driver, evalTab);
+		evalTab.click();	
+		return PageFactory.initElements(driver, EvaluationPage.class);
+		}
+	
+	public SettingsPage clickMyAccountfromSettings() {
+		System.out.println("Calling action clickMyAccountfromSettings");
+		Log.info("Calling action clickMyAccountfromSettings");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(SettingsIcon));
+		SettingsIcon.click();
+		wait.until(ExpectedConditions.elementToBeClickable(MyAccountOption));
+		MyAccountOption.click();
+		//return PageFactory.initElements(driver, SettingsPage.class);
+		return new SettingsPage(driver);
+		}
+	
+	/*public TransparencyPage clickDefaultDetailslink() {
+		System.out.println("Calling action clickDefaultDetailslink");
+		Log.info("Calling action clickDefaultDetailslink");
+		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		Actions action = new Actions(driver);
+	    action.sendKeys(Keys.PAGE_DOWN);
+	    driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+	    jse.executeScript("window.scrollBy(0,400)", "");
+	    //driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		//Detailslinkfordefault.click();	
+	    Searchbox.sendKeys("046353AB");
+	    SearchedIdentifier.click();
+	    
+		return PageFactory.initElements(driver, TransparencyPage.class);
+		}*/
+	
+	public TransparencyPage openIdentifierfromSearchBox(String Identifier) {
+		System.out.println("Calling action openIdentifierfromSearchBox");
+		Log.info("Calling action openIdentifierfromSearchBox");
+		
+		boolean flag=false;
+//		while (flag==false){
+//	    //Searchbox.sendKeys(Keys.DOWN);
+//		Searchbox.clear();
+//	    Searchbox.sendKeys(Identifier);
+//	    //Searchbox.sendKeys(Keys.UP);
+//	    Searchbox.sendKeys(Keys.TAB);
+//	    //WebDriverWait wait = new WebDriverWait(driver, 40);
+//	    flag=PageCommonUtils.isElementVisible(driver, SearchedIdentifier);
+//	    System.out.println(Thread.currentThread().getId()+"__hiiiiiiiiiiiiiiiiiiiiiii");
+//	    
+//	    if (flag)
+//	    	break;
+////		wait.until(ExpectedConditions.visibilityOf(SearchedIdentifier));
+//		
+////		flag=true;
+//		}
+		
+//		for(int count=1; flag==false; count++){
+//			Searchbox.clear();
+//			Searchbox.sendKeys(Identifier);
+//			Searchbox.sendKeys(Keys.TAB);
+//			flag=PageCommonUtils.isElementVisible(driver, SearchedIdentifier);
+//			System.out.println(Thread.currentThread().getId()+"__hiiiiiiiiiiiiiiiiiiiiiii__"+count);
+//		    if (flag)
+//		    	break;
+//		}
+		
+		for(int count=1; count<=10; count++){
+			Searchbox.clear();
+			Searchbox.sendKeys(Identifier);
+			//Searchbox.sendKeys(Keys.TAB);
+		    if (PageCommonUtils.isElementVisible(driver, SearchedIdentifier))
+		    	break;
+		}
+		
+	    SearchedIdentifier.click();
+	    
+		return PageFactory.initElements(driver, TransparencyPage.class);
+		}	
+
+	
+	public TransparencyPage searchAndSelectBond(String securityId,String testName){
+		System.out.println("Calling action searchAndSelectBond");
+		Log.info("Calling action searchAndSelectBond");
+		Reporter.log("Calling action searchAndSelectBond");
+		CustomVerification cv = new CustomVerification(testName,driver);
+
+		//searchField.sendKeys(securityId);
+		//PageCommonUtils.isElementVisible(driver, searchResultTable);
+		for(int count=1; count<=10; count++){
+			Searchbox.clear();
+			searchField.sendKeys(securityId);
+			//Searchbox.sendKeys(Keys.TAB);
+		    if (PageCommonUtils.isElementVisible(driver, searchResultTable))
+		    	break;
+		}
+		
+		List<WebElement> rows = searchResultTable.findElements(By.tagName("tr"));
+
+		try {
+			outerloop:
+			for(int rnum=1; rnum<rows.size(); rnum++){
+				List<WebElement> columns = rows.get(rnum).findElements(By.tagName("td"));
+				for(int cnum=0; cnum<columns.size(); cnum++){
+					WebElement bondLink=columns.get(0);
+					String bondLinkText=bondLink.getText();
+
+					if (bondLinkText.length() == 9){
+						bondLinkText=bondLinkText.substring(0,bondLinkText.length()-1);}
+
+					System.out.println("GuiSearchValue: "+bondLinkText+" DataProvided: "+securityId);
+					if (bondLinkText.equals(securityId))
+						{
+						cv.verifyElementAndLogInConsole("bondLink", PageCommonUtils.isElementClickable(driver, bondLink), "HomePage_Search");
+						bondLink.click();
+						break outerloop;
+						}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("No Search Result found");
+			Reporter.log("No Search Result found");
+			e.printStackTrace();
+		}
+		cv.checkForVerificationErrors();
+		PageCommonUtils.waitForPageToLoad(driver, 30);
+		return new TransparencyPage(driver);		
+	}
+	
+	public AdvanceSearchPage clickAdvanceSearch() {
+		System.out.println("Calling action clickAdvanceSearch");
+		Log.info("Calling action clickAdvanceSearch");
+		Reporter.log("Calling action clickAdvanceSearch");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(advanceSearchLink));
+		advanceSearchLink.click();
+		return new AdvanceSearchPage(driver);
+		}
+	
+	public GnDPage clickMarketsLink() {
+		System.out.println("Calling action clickMarketsLink");
+		Log.info("Calling action clickMarketsLink");
+		Reporter.log("Calling action clickMarketsLink");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(marketsLink));
+		marketsLink.click();
+		return new GnDPage(driver);
+		}
+	
+	public PortfolioPage clickPortfolioLink() {
+		System.out.println("Calling action clickPortfolioLink");
+		Log.info("Calling action clickPortfolioLink");
+		Reporter.log("Calling action clickPortfolioLink");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(portfolioLink));
+		portfolioLink.click();
+		return new PortfolioPage(driver);
+		}
+	
+	@Override
+	public CorpActionsHomePage clickCorpActions() {
+		System.out.println("Calling action clickCorpActions");
+		Log.info("Calling action clickCorpActions");
+		Reporter.log("Calling action clickCorpActions");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(corpActionsLink));
+		corpActionsLink.click();
+		return new CorpActionsHomePage(driver);
+		}
+		
+}
+******************************************************************************************************************************************
+PageCommonUtils:-
+/**   
+* This contains functions common across page classes.
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.pages;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
+
+import com.google.common.base.Function;
+import org.openqa.selenium.Alert;
+import com.ice.vaf.utilities.CommonUtils;
+import com.ice.vaf.utilities.CustomVerification;
+import com.ice.vaf.utilities.Log;
+
+
+public interface PageCommonUtils {
+	
+	public static String getTitle(WebDriver webDriver) {
+		//CommonUtils.sleep(20);
+		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(webDriver);
+		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+		wait.withTimeout(40, TimeUnit.SECONDS).ignoring(Exception.class, UnreachableBrowserException.class);
+		Function<WebDriver, String> function = new Function<WebDriver, String>() {
+			public String apply(WebDriver webDriver) {
+				String title = null;
+
+				title = webDriver.getTitle();
+				return title;
+			}
+		};
+
+		return wait.until(function);
+	}
+	
+	public static WebElement fluentWaitUntilFindElement(WebDriver driver,final By locator){
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+	            .withTimeout(30, TimeUnit.SECONDS)
+	            .pollingEvery(100, TimeUnit.MILLISECONDS)
+	            .ignoring(NoSuchElementException.class);
+
+	    WebElement foo = wait.until(new Function<WebDriver, WebElement>() {
+	        public WebElement apply(WebDriver driver) {
+	            return driver.findElement(locator);
+	        }
+	    });
+	    return foo;
+	};
+	
+//	
+//	public static Boolean fluentWaitForCondition(WebDriver driver,boolean condition){
+//		FluentWait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+//	            .withTimeout(30, TimeUnit.SECONDS)
+//	            .pollingEvery(1000, TimeUnit.MILLISECONDS)
+//	            .ignoring(NoSuchElementException.class);
+//
+//		Function<WebDriver, Boolean> function =new Function<WebDriver, Boolean>() {
+//	        public Boolean apply(WebDriver driver) {
+//	            return condition;
+//	        }
+//	    };
+//	    
+//	    return wait.until(function);
+//	}
+//	
+	
+	public static boolean isAlertPresent(WebDriver webDriver) {
+
+		  boolean presentFlag = false;
+
+		  try {
+
+		   // Check the presence of alert
+		   Alert alert = webDriver.switchTo().alert();
+		   // Alert present; set the flag
+		   presentFlag = true;
+		   // if present consume the alert
+		   alert.accept();
+
+		  } catch (NoAlertPresentException ex) {
+		   // Alert not present
+		   ex.printStackTrace();
+		  }
+
+		  return presentFlag;
+
+		 }
+
+	public static boolean isElementVisible(WebDriver wd, WebElement ele) {
+		
+		if(ele == null) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " couldnt be found");
+			Log.info("The element "+ ele + " couldnt be found");
+			System.out.println("The element "+ ele + " couldnt be found");
+			return false;
+		}
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(wd, 40);
+			wait.until(ExpectedConditions.visibilityOf(ele));
+			System.out.println(ele.toString());
+			return true;
+		} catch(Exception e) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " is not visible.");
+			Log.info("The element "+ ele + " is not visible.");
+			System.out.println("The element "+ ele.toString() + " is not visible.");
+			return false;
+		}
+	}
+	
+	public static boolean isElementVisible(WebDriver wd, WebElement ele, int waittimeinsec) {
+		
+		if(ele == null) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " couldnt be found");
+			Log.info("The element "+ ele + " couldnt be found");
+			System.out.println("The element "+ ele + " couldnt be found");
+			return false;
+		}
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(wd, waittimeinsec);
+			wait.until(ExpectedConditions.visibilityOf(ele));
+			System.out.println(ele.toString());
+			return true;
+		} catch(Exception e) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " is not visible.");
+			Log.info("The element "+ ele + " is not visible after waiting for "+waittimeinsec+" seconds");
+			System.out.println("The element "+ ele.toString() + " is not visible after waiting for "+waittimeinsec+" seconds");
+			return false;
+		}
+	}
+
+	public static boolean isElementPresent(WebDriver wd, By byxpath) {
+		
+		if(byxpath == null) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " couldnt be found");
+			Log.info("The element "+ byxpath + " couldnt be found");
+			System.out.println("The element "+ byxpath + " couldnt be found");
+			return false;
+		}
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(wd, 30);
+			wait.until(ExpectedConditions.presenceOfElementLocated(byxpath));
+			return true;
+		} catch(Exception e) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " is not visible.");
+			Log.info("The element "+ byxpath + " is not visible.");
+			System.out.println("The element "+ byxpath.toString() + " is not present.");
+			return false;
+		}
+	}
+	
+	public static boolean isElementPresent(WebDriver wd, By byxpath, int waitTime) {
+		
+		if(byxpath == null) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " couldnt be found");
+			Log.info("The element "+ byxpath + " couldnt be found");
+			System.out.println("The element "+ byxpath + " couldnt be found");
+			return false;
+		}
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(wd, waitTime);
+			wait.until(ExpectedConditions.presenceOfElementLocated(byxpath));
+			return true;
+		} catch(Exception e) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " is not visible.");
+			Log.info("The element "+ byxpath + " is not visible.");
+			System.out.println("The element "+ byxpath.toString() + " is not present.");
+			return false;
+		}
+	}
+	
+	public static String getInstrumentType(String inst) {
+		if(inst.length() == 8 || inst.length() == 9) {
+			return new String("cusip");
+		} else if(inst.length() == 12) {
+			return new String("isin");
+		} else if(inst.length() == 7) {
+			return new String("sedol");
+		}		
+		return null;
+	}
+	
+	public static void waitForPageToLoad(WebDriver webDriver, int maxNumberOfSeconds) {
+
+		Long startTimeInmilliseconds = System.currentTimeMillis();
+
+		Integer numberOfseconds = new Integer(maxNumberOfSeconds * 1000);
+		String completionStatus = "";
+
+		while ((System.currentTimeMillis() - startTimeInmilliseconds) < numberOfseconds) {
+			if (webDriver instanceof JavascriptExecutor) {
+				try {
+					completionStatus = (String) ((JavascriptExecutor) webDriver)
+							.executeScript("return document.readyState");
+
+				} catch (UnreachableBrowserException ex) {
+
+				}
+				if (completionStatus.equals("complete")) {
+					break;
+				}
+			}
+		}
+
+	}
+
+	public static void waitForAjaxQueryCompletion(WebDriver webDriver, int maxNumberOfSeconds) {
+
+		Long startTimeInmilliseconds = System.currentTimeMillis();
+
+		Integer numberOfseconds = new Integer(maxNumberOfSeconds * 1000);
+		Boolean completionStatus = false;
+		//int count = 0;
+		while ((System.currentTimeMillis() - startTimeInmilliseconds) < numberOfseconds)
+
+		{	//count++;
+			//System.out.println(count);
+			if (webDriver instanceof JavascriptExecutor) {
+				try {
+		//completionStatus = (Boolean) ((JavascriptExecutor) webDriver).executeScript("return $$.active == 0");
+					completionStatus = (Boolean) ((JavascriptExecutor) webDriver)
+							.executeScript("return jQuery.active == 0");
+
+				} catch (UnreachableBrowserException ex) {
+
+				}
+				if (completionStatus == true) {
+					break;
+				}
+			}
+		}
+
+	}
+	
+	public static Boolean isAjaxQueryCompleted(WebDriver webDriver) {
+		Boolean completionStatus = false;
+			if (webDriver instanceof JavascriptExecutor) {
+				try {
+					completionStatus = (Boolean)((JavascriptExecutor) webDriver).executeScript("return jQuery.active == 0");
+				} catch (UnreachableBrowserException ex) {
+				}
+			}
+		return completionStatus;
+	}
+
+	public static void mouseHoverJScript(WebDriver webDriver, WebElement HoverElement) {
+		try {
+			if (HoverElement.isDisplayed()) {
+				
+				String mouseOverScript = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('mousedown', true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject) { arguments[0].fireEvent('onmousedown');}";
+				((JavascriptExecutor) webDriver).executeScript(mouseOverScript,
+						HoverElement);
+
+			} else {
+				System.out.println("Element was not visible to hover " + "\n");
+
+			}
+		} catch (StaleElementReferenceException e) {
+			System.out.println("Element with " + HoverElement
+					+ "is not attached to the page document"
+					+ e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + HoverElement + " was not found in DOM"
+					+ e.getStackTrace());
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error occurred while hovering"
+					+ e.getStackTrace());
+		}
+	}
+	
+	public static void waitForPageRender(WebDriver webDriver, Integer seconds) {
+
+		waitForPageToLoad(webDriver, 30);
+		waitForAjaxQueryCompletion(webDriver, 30);
+		seconds = seconds * 1000;
+		try {
+			Thread.sleep(seconds.longValue());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static WebElement findElement(WebDriver wd, String locatorType, String locatorVal) {
+		WebDriverWait wait = new WebDriverWait(wd, 30);
+	
+		WebElement tmpEle = null;
+		try {
+			switch (locatorType.toLowerCase()) {
+			case "classname":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.className(locatorVal)));
+				tmpEle = wd.findElement(By.className(locatorVal));
+				break;
+			case "id":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(locatorVal)));
+				tmpEle = wd.findElement(By.id(locatorVal));
+				break;
+			case "tagname":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName(locatorVal)));
+				tmpEle = wd.findElement(By.tagName(locatorVal));
+				break;
+			case "name":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.name(locatorVal)));
+				tmpEle = wd.findElement(By.name(locatorVal));
+				break;
+			case "link":
+			case "linktext":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(locatorVal)));
+				tmpEle = wd.findElement(By.linkText(locatorVal));
+				break;
+			case "css":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(locatorVal)));
+				tmpEle = wd.findElement(By.cssSelector(locatorVal));
+				break;
+			case "xpath":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorVal)));
+				tmpEle = wd.findElement(By.xpath(locatorVal));
+				break;
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			Log.info("Failed to find element with " + locatorType + "=" + locatorVal);
+		}
+	
+		return tmpEle;
+	}
+
+public static boolean isElementClickable(WebDriver wd, WebElement ele) {
+		
+		if(ele == null) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " couldnt be found");
+			Log.info("The element "+ ele + " couldnt be found");
+			return false;
+		}
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(wd, 40);
+			wait.until(ExpectedConditions.elementToBeClickable(ele));
+			return true;
+		} catch(Exception e) {
+			//Log.error("The element with " + locatorType + " and locator value " + locatorVal + " is not visible.");
+			Log.info("The element "+ ele + " is not clickable.");
+			return false;
+		}
+	}
+
+public static void focus(WebDriver wd, WebElement element){
+		Actions action=new Actions(wd);
+		action.moveToElement(element);
+		action.build().perform();
+	}
+
+public static boolean isChildPresent(WebDriver driver, WebElement ele, By xpath){
+	try {
+		ele.findElement(xpath);
+		return true;
+		} catch (NoSuchElementException  nse) {
+			System.out.println("The child element "+xpath+" for "+ ele + " is not present.");
+			Log.info("The child element "+xpath+" for "+ ele + " is not present.");
+			return false;
+		}
+	}
+
+public static void selecteDateOnGuiCalendar1(CustomVerification cv,WebDriver driver, String date, WebElement DateCalendarTitleYear, WebElement DateCalendarTitleMonth, WebElement DateCalendarPrev, WebElement DateCalendarNext,List<WebElement> CalendarDatesPicker){
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+	date = CommonUtils.ConvertDateFormat(date, "MM/dd/yyyy", "dd/MM/yyyy");
+	System.out.println("NewFormtDate "+date);
+	String dayData=date.split("/")[0];
+	String monthData=date.split("/")[1];
+	String yearData=date.split("/")[2];
+	
+	int inputYear=Integer.parseInt(yearData);
+	int inputMonth=Integer.parseInt(monthData);
+	
+
+	wait.until(ExpectedConditions.visibilityOf (DateCalendarTitleMonth));
+	wait.until(ExpectedConditions.visibilityOf (DateCalendarTitleYear));
+	
+//	int currentYear=Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date()));
+//	String currentMon=new SimpleDateFormat("MMM").format(new Date());
+	int guiYear = Integer.parseInt(DateCalendarTitleYear.getText());
+	String guiMonthString= DateCalendarTitleMonth.getText();
+	int guiMonth=Integer.parseInt(CommonUtils.getNumericMonth(guiMonthString));
+	
+	System.out.println("guiMonth "+guiMonth);
+	System.out.println("guiYear "+guiYear);
+	
+	while(guiYear != inputYear || guiMonth !=inputMonth){		
+		System.out.println(guiMonth);
+		System.out.println(guiYear);
+//		if(guiYear == inputYear && guiMonth ==inputMonth)
+//			break;
+		
+		if(guiYear > inputYear){
+			wait.until(ExpectedConditions.visibilityOf (DateCalendarPrev));
+			DateCalendarPrev.click();
+		}
+		else if(guiYear < inputYear){
+			wait.until(ExpectedConditions.visibilityOf (DateCalendarNext));
+			DateCalendarNext.click();
+		}
+		else if(guiYear == inputYear){
+			if(guiMonth > inputMonth){
+				wait.until(ExpectedConditions.visibilityOf (DateCalendarPrev));
+				DateCalendarPrev.click();
+			}
+			else if(guiMonth < inputMonth){
+				wait.until(ExpectedConditions.visibilityOf (DateCalendarNext));
+				DateCalendarNext.click();
+			}
+			else
+				break;
+		}
+		
+		wait.until(ExpectedConditions.visibilityOf (DateCalendarTitleMonth));
+		wait.until(ExpectedConditions.visibilityOf (DateCalendarTitleYear));
+		guiYear = Integer.parseInt(DateCalendarTitleYear.getText());
+		guiMonthString= DateCalendarTitleMonth.getText();
+		guiMonth=Integer.parseInt(CommonUtils.getNumericMonth(guiMonthString));
+	}
+	
+	boolean dateFlag=false;
+	for (WebElement DateElement:CalendarDatesPicker){
+		//cv.verifyTrue("Date option is not visible in Calender", PageCommonUtils.isElementClickable(driver, DateElement));
+		if(dayData.charAt(0)=='0')
+			dayData=dayData.substring(1);
+		if(dayData.equals(DateElement.getText())){
+		//if(Integer.parseInt(dayData)==Integer.parseInt(DateElement.getText())){
+			wait.until(ExpectedConditions.elementToBeClickable(DateElement));
+			//System.out.println("Selected Date data"+DateElement.getText()+" "+DateCalendarTitle.getText());
+			DateElement.click();
+			dateFlag=true;
+			break;
+		}
+	}
+	if (dateFlag==false){
+		System.out.println("The Calender Date Provided is not a Valid date, please provide valid date");
+		Log.error("The Calender Date Provided is not a Valid date, please provide valid date");
+		Reporter.log("The Calender Date Provided is not a Valid date, please provide valid date");
+	}
+	
+}
+
+public static List<String> selectAllFromDropDown(WebDriver driver, WebElement dropdownselector){
+	List<String> valuesInGui = new ArrayList<>();
+	WebDriverWait wait = new WebDriverWait(driver, 60);
+	wait.until(ExpectedConditions.visibilityOf (dropdownselector));
+	
+	Select select = new Select(dropdownselector);
+	List<WebElement> options=select.getOptions();
+	for(WebElement option: options){
+		valuesInGui.add(option.getText().trim());
+	}
+	return valuesInGui;
+}
+
+public static void selectVisibleTextFromDropDown(WebDriver driver, WebElement dropdownselector, String text){
+	WebDriverWait wait = new WebDriverWait(driver, 60);
+	wait.until(ExpectedConditions.visibilityOf (dropdownselector));
+	Select select = new Select(dropdownselector);
+	select.selectByVisibleText(text);
+}
+
+public static void selectValueFromDropDown(WebDriver driver, WebElement dropdownselector, String text){
+	WebDriverWait wait = new WebDriverWait(driver, 60);
+	wait.until(ExpectedConditions.visibilityOf (dropdownselector));
+	Select select = new Select(dropdownselector);
+	select.selectByValue(text);
+}
+
+public static List<String> getAllValuesFromDropDown(WebDriver driver, WebElement dropdownselector) {
+	//CommonUtils.showMessageAll("Calling action getAllEventsFromRightDropDown "+dropdownselector);
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+	wait.until(ExpectedConditions.visibilityOf(dropdownselector));
+	List<String> allValues = new ArrayList<String>();
+	
+	Select event = new Select(dropdownselector);
+	List<WebElement> allOptions=event.getOptions();
+	for(WebElement option:allOptions)
+		allValues.add(option.getText());
+	System.out.println(allValues);
+	return allValues;
+}
+
+public static String getDefaultValueFromDropDown(WebDriver driver, WebElement dropdownselector) {
+	//CommonUtils.showMessageAll("Calling action getDefaultValueFromDropDown "+dropdownselector);
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+	wait.until(ExpectedConditions.visibilityOf(dropdownselector));	
+	Select event = new Select(dropdownselector);
+	return event.getFirstSelectedOption().getText();
+}
+
+public static void verifyDropdownValues(WebDriver driver, String[] exp, WebElement e, String testName){
+	System.out.println("Calling action verifyDropdownValues");
+	Log.info("Calling action verifyDropdownValues");
+	Reporter.log("Calling action verifyDropdownValues");
+	
+	CustomVerification cv = new CustomVerification(testName,driver);
+	Boolean flag=true;
+	
+	Select dropdwn = new Select (e);
+	List<WebElement> options = dropdwn.getOptions();
+	int i = 0;
+	ArrayList<String> optiontext = new ArrayList<String>(); 
+	
+	for (WebElement we:options){
+		optiontext.add(i,we.getText());
+		System.out.println("Option text "+optiontext.get(i));
+		System.out.println("exp text "+exp[i]);
+		i++;
+	}
+	
+	for(int j=0; j<options.size(); j++ ){
+		if ((optiontext.get(j).trim()).equalsIgnoreCase((exp[j]).trim())){
+			System.out.println("Value: " + optiontext.get(j));
+			System.out.println("Value in array " + exp[j] );
+		} else flag=false;
+		cv.verifyTrue("Values in filter dropdown are not as expected", flag);
+		}
+	cv.checkForVerificationErrors();
+}
+
+public static void verifyDropdownValues(WebDriver driver, String[] exp, String testName, String path){
+	System.out.println("Calling action verifyDropdownValues");
+	Log.info("Calling action verifyDropdownValues");
+	Reporter.log("Calling action verifyDropdownValues");
+	
+	CustomVerification cv = new CustomVerification(testName,driver);
+	Boolean flag=true;
+	
+	
+	List<WebElement> options = driver.findElements(By.xpath(path));
+	int i = 0;
+	ArrayList<String> optiontext = new ArrayList<String>(); 
+	
+	for (WebElement we:options){
+		optiontext.add(i,we.getText());
+		System.out.println("Option text "+optiontext.get(i));
+		System.out.println("exp text "+exp[i]);
+		i++;
+	}
+	
+	for(int j=0; j<options.size(); j++ ){
+		if ((optiontext.get(j).trim()).equalsIgnoreCase((exp[j]).trim())){
+			System.out.println("Value: " + optiontext.get(j));
+			System.out.println("Value in array " + exp[j] );
+		} else flag=false;
+		cv.verifyTrue("Values in filter dropdown are not as expected", flag);
+		}
+	cv.checkForVerificationErrors();
+}
+
+public static void verifyDropdownValues(WebDriver driver, ArrayList<String> exp, String testName, String path){
+	System.out.println("Calling action verifyDropdownValues");
+	Log.info("Calling action verifyDropdownValues");
+	Reporter.log("Calling action verifyDropdownValues");
+	
+	CustomVerification cv = new CustomVerification(testName,driver);
+	Boolean flag=true;
+	
+	
+	List<WebElement> options = driver.findElements(By.xpath(path));
+	int i = 0;
+	ArrayList<String> optiontext = new ArrayList<String>(); 
+	
+	for (WebElement we:options){
+		optiontext.add(i,we.getText());
+		System.out.println("Option text "+optiontext.get(i));
+		System.out.println("exp text "+exp.get(i));
+		i++;
+	}
+	
+	for(int j=0; j<options.size(); j++ ){
+		if ((optiontext.get(j).trim()).equalsIgnoreCase((exp.get(j)).trim())){
+			System.out.println("Value: " + optiontext.get(j));
+			System.out.println("Value in array " + exp.get(j) );
+		} else flag=false;
+		cv.verifyTrue("Values in filter dropdown are not as expected", flag);
+		}
+	cv.checkForVerificationErrors();
+}
+
+public static void verifyColumnInTableContainsValue(WebDriver driver, String columnxpath, String textexpected, String columnname, String testName){
+	
+	Boolean flag = true;
+	CustomVerification cv = new CustomVerification(testName,driver);
+	
+	List<WebElement> column_identifier = driver.findElements(By.xpath(columnxpath));
+	System.out.println("NUMBER OF ROWS IN THIS TABLE = "+ column_identifier.size());
+	
+	ArrayList<String> al = new ArrayList<String>();
+	int j = 0; 
+	int row_num=0;
+	  for (WebElement tdElement : column_identifier ) 
+	  {
+	      al.add(tdElement.getText()); 
+	      System.out.println("row # " + row_num + ", col text=" +(tdElement.getText()));
+		  row_num++;
+	  }
+	  
+	  for (j=1; j<column_identifier.size(); j++){
+		 if (!al.get(j).isEmpty()){
+		  if (al.get(j).contains(textexpected)){
+			  System.out.println("Correct Match");
+			  flag = true;
+		  } else flag = false;
+		  cv.verifyTrue(columnname +" is not as per selection" , flag);
+	  }
+	  }
+	  cv.checkForVerificationErrors();
+}
+
+}
+
+
+******************************************************************************************************************************************
+CaptureScreenshot:-
+/**   
+* For taking screenshots after test execution with testName & DateTimeStamp.
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.utilities;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
+public class CaptureScreenshot {
+
+	public static void getscreenshot(String msg, String testName, WebDriver driver, String screenshotDir){
+		try {
+		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+			String failureImageFileName = testName.trim()+"__"+ new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss").format(new Date(Instant.now().getEpochSecond()*1000));
+			System.out.println(msg+"--"+failureImageFileName+ ".png");
+			FileUtils.copyFile(scrFile, new File(screenshotDir+File.separator+failureImageFileName+"--"+msg+ ".png"));
+		} catch (IOException e) {
+			e.printStackTrace();		
+		}
+	}
+}
+*******************************************************************************************************************************************
+CustomVerification:-
+/**   
+* For doing verifications.
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.utilities;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.IInvokedMethod;
+import org.testng.IInvokedMethodListener;
+import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+
+import com.ice.vaf.driverfactory.DriverFactory;
+
+
+
+public  class CustomVerification{
+	
+	private StringBuffer verificationErrors;
+	private WebDriver wdriver;
+	private String testName;
+	private boolean takeCustomScreenshotFlag = false;
+
+	public CustomVerification(String testName, WebDriver driver) {
+		this.wdriver=driver;
+		verificationErrors = new StringBuffer();
+		//System.out.println(testName);
+		this.testName=testName;
+		this.takeCustomScreenshotFlag=true;
+		//this.context=context;
+	}
+	
+	public CustomVerification() {
+		verificationErrors = new StringBuffer();
+	}
+
+	public void verifyTrue(String msg, Boolean b) {
+		try {
+			Assert.assertTrue(b.booleanValue());
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + "<br>");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	public void verifyFalse(String msg, Boolean b) {
+		try {
+			Assert.assertFalse(b.booleanValue());
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + "<br>");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	public void verifyTrue(String elementDefinition, String elementLocator,
+			Boolean b, String pageURL) {
+		try {
+			Assert.assertTrue(b.booleanValue());
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error("Verification failed for element: "+ elementDefinition + ",Element locator: " + elementLocator+ "On page: " + pageURL);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+
+			Reporter.log("Verification failed for element: "
+					+ elementDefinition + ",Element locator: " + elementLocator
+					+ "On page: " + pageURL);
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println("Verification failed for element: "+ elementDefinition + ",Element locator: " + elementLocator+ "On page: " + pageURL);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	public void verifyElementAndLogInConsole(String elementDefinition, String elementLocator, Boolean b, String pageNeme) {
+		try {
+			Assert.assertTrue(b.booleanValue());
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error("Verification failed for element: \""+ elementDefinition + "\",Element locator: \"" + elementLocator	+ "\" On page: \"" + pageNeme+"\"");
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log("Verification failed for element: \""
+					+ elementDefinition + "\",Element locator: \"" + elementLocator
+					+ "\" On page: \"" + pageNeme+"\"");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println("Verification failed for element: \""+ elementDefinition + "\",Element locator: \"" + elementLocator	+ "\" On page: \"" + pageNeme+"\"");
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	public void verifyElementAndLogInConsole(String elementDefinition, Boolean b, String pageName) {
+		try {
+			Assert.assertTrue(b.booleanValue());
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error("Verification failed for element: \""+ elementDefinition	+ "\" On page: \"" + pageName+"\"");
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log("Verification failed for element: \""
+					+ elementDefinition	+ "\" On page: \"" + pageName+"\"");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println("Verification failed for element: \""+ elementDefinition	+ "\" On page: \"" + pageName+"\"");
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+	
+	public void verifyEquals(String msg, String s1, String s2) {
+		try {
+			Assert.assertEquals(s1, s2);
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + "<br>");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	// Compare two strings. Report custom message as well as actual and expected values.
+	public void verifyEqualsPrintValues(String msg, String actual, String expected) {
+		verifyEqualsPrintValues(msg, (Object) actual, (Object) expected);
+	}
+	
+	public void verifyEquals(String msg, Object obj1, Object obj2) {
+		try {
+			Assert.assertEquals(obj1, obj2);
+			System.out.println("Actual is"+obj1 +"and" +"Expected is: "+obj2);
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + " ");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+	
+	// Compare two objects. Report custom message as well as actual and expected values.
+	public void verifyEqualsPrintValues(String msg, Object actual, Object expected) {
+		try {
+			Assert.assertEquals(actual, expected);
+			System.out.println("Actual is:" +actual +" and "+ "Expected is:" +expected  );
+		} catch (Error e) {
+			System.out.println("Actual is:" +actual +" and "+ "Expected is:" +expected  );
+			verificationErrors.append(e);
+			Reporter.log(msg + " ");
+			Reporter.log("EXPECTED: " + expected);
+			Reporter.log("ACTUAL: " + actual);
+			Log.error("\"" + msg + "\",\"" + expected + "\",\"" + actual +"\"");
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	public void verifyNotEquals(String msg, Object obj1, Object obj2) {
+		try {
+			Assert.assertNotEquals(obj1, obj2);
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + "<br>");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+	
+	public void verifyNotEquals(String msg, String s1, String s2) {
+		try {
+			Assert.assertNotEquals(s1, s2);
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + "<br>");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	public void verifyEquals(String msg, String str1[], String str2[]) {
+		try {
+			Assert.assertEquals(str1, str2);
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + "<br>");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+	
+	// Compare two string arrays. Report custom message as well as actual and expected values.
+	public void verifyEqualsPrintValues(String msg, String actual[], String expected[]) {
+		verifyEqualsPrintValues(msg, (Object) actual, (Object) expected);
+	}
+
+	public void verifyEquals(Object str1[], Object str2[], String msg) {
+		try {
+			Assert.assertEquals(((Object) (str1)), ((Object) (str2)));
+		} catch (Error e) {
+			verificationErrors.append(e);
+			
+			//To log customized message
+			Log.error(msg);
+			//To log the error message
+			Log.error(e.toString());
+			//To log the complete error trace
+			Log.trace(e.fillInStackTrace());
+			
+			Reporter.log(msg + "<br>");
+			Reporter.log(e.toString() + "<br>");
+			
+			System.out.println(msg);
+			System.out.println(e.toString());
+			if (takeCustomScreenshotFlag)
+				CaptureScreenshot.getscreenshot("CustomVerification_Failure_Screenshot",testName,wdriver,DriverFactory.screenshotDir);
+		}
+	}
+
+	public void clearVerificationErrors() {
+		verificationErrors = new StringBuffer();
+	}
+
+	public void checkForVerificationErrors() {
+		String verificationErrorString = verificationErrors.toString();
+		clearVerificationErrors();
+		if (!"".equals(verificationErrorString)){
+			System.out.println(verificationErrorString);
+			Assert.fail();
+			}
+	}
+}
+****************************************************************************************************************************
+CommonUtils:-
+
+/**   
+* This contains functions common across page & test classes.
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.utilities;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TimeZone;
+import java.util.Vector;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Reporter;
+
+public interface CommonUtils {
+	
+	public static boolean isFileDownloaded(String downloadPath, String fileName) {
+		//System.out.println("download directory Used: "+downloadPath);
+		boolean flag = false;
+	    try {
+			File dir = new File(downloadPath);
+			File[] dir_contents = dir.listFiles();
+			
+			System.out.println(dir_contents);
+			for (int i = 0; i < dir_contents.length; i++) {
+				//System.out.println(dir_contents[i].getName());
+			    if (dir_contents[i].getName().equals(fileName))
+			        return flag=true;
+			    	// To delete it afterwards
+			    	//dir_contents[i].delete();
+			        }
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	    return flag;
+	}
+	
+
+	public static File getLatestFilefromDir(String dirPath){
+	    File dir = new File(dirPath);
+	    File[] files = dir.listFiles();
+	    if (files == null || files.length == 0) {
+	        return null;
+	    }
+	
+	    File lastModifiedFile = files[0];
+	    for (int i = 1; i < files.length; i++) {
+	       if (lastModifiedFile.lastModified() < files[i].lastModified()) {
+	           lastModifiedFile = files[i];
+	       }
+	    }
+	    return lastModifiedFile;
+	}
+	
+    public static void deleteFilesFromDir(String dirToClear){
+		try {
+			File dir = new File(dirToClear);
+			File[] files = dir.listFiles();
+			if (files == null || files.length == 0) {
+			    System.out.println("No File from Last Run were present for deletion in directory: "+dirToClear);
+			}
+			else{	    
+				for (int i = 0; i < files.length; i++) {
+					System.out.println("Deleting Last Run File "+files[i].getName());
+					files[i].delete();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+	}
+    
+	public static String getInstrumentType(String inst) {
+		if(inst.length() == 8 || inst.length() == 9) {
+			return new String("cusip");
+		} else if(inst.length() == 12) {
+			return new String("isin");
+		} else if(inst.length() == 7) {
+			return new String("sedol");
+		}		
+		return null;
+	}
+	
+    public static boolean ValidateDateTimeFormat(String format, String value) {
+        Date date = null;
+        if (value.equals("")){
+        	System.out.println("Blank Date received");
+        	return date !=null;
+        }
+        else{
+	        try {
+	            SimpleDateFormat sdf = new SimpleDateFormat(format);
+	            date = sdf.parse(value);
+	            if (!value.equals(sdf.format(date))) {
+	                date = null;
+	            }
+	        } catch (ParseException ex) {
+	        }
+	        return date != null;
+        }
+    }
+
+    public static String ConvertDateFormat(String value, String inputformat, String outputformat) {
+        Date inputdate = null;
+        if (value.equals("")){
+        	showMessageAll("Blank Date received");
+        	//return value;
+        }
+        else{
+	        try {
+	            SimpleDateFormat sdf = new SimpleDateFormat(inputformat);
+	            sdf.setLenient(false);
+	            inputdate = sdf.parse(value);
+	            value = new SimpleDateFormat(outputformat).format(inputdate);
+	            //return value;
+	        } catch (ParseException ex) {
+	        	showMessageAll("Invalid date "+value+" received");
+	        	ex.printStackTrace();
+				Log.error(ex.toString());
+				Log.trace(ex.fillInStackTrace());
+				//Reporter.log(ex.toString());
+				Reporter.log(ex.fillInStackTrace().getMessage());
+	        	value="";
+	        }
+        }
+		return value;
+    }
+    
+    public static List<Date> convertStringListToDateList(List<String> inputlist, String inputformat){
+    	
+    	List<Date> dateList = new ArrayList<>(inputlist.size());
+    	SimpleDateFormat sdf = new SimpleDateFormat(inputformat);
+    	sdf.setLenient(false);
+    	for (String dateString : inputlist) {
+    	    // sdf.parse(dateString) - convert the String into a Date accoring the pattern
+    	    // dateList.add(...) - add the Date to the list
+    		if(!dateString.trim().contains("--") && dateString.trim().length()==2 && dateString!=""){
+	    		try {
+					dateList.add(sdf.parse(dateString));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+    		}
+    	}
+		return dateList;	
+    }
+    
+    public static Date convertStringToDate(String dateString, String inputformat){
+		Date outDate=null;
+    	try {
+    		SimpleDateFormat sdf=new SimpleDateFormat(inputformat);
+    		sdf.setLenient(false);
+    		outDate= sdf.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return outDate;	
+    }
+    
+    public static List<String> sortAlphanumericList(List<String> inputlist) {
+    	//Collections.sort(inputlist);
+        Collections.sort(inputlist, new Comparator<String>() {
+        	@Override
+            public int compare(String o1, String o2) {
+                return extractInt(o1) - extractInt(o2);
+            }
+
+            int extractInt(String s) {
+                String num = s.replaceAll("\\D", "");
+                // return 0 if no digits found
+                return num.isEmpty() ? 0 : Integer.parseInt(num);
+            }
+        });
+        //System.out.println(inputlist);
+        return inputlist;
+    }
+    
+    public static List<String> sortNumericList(List<String> inputlist) {
+        Collections.sort(inputlist, new Comparator<String>() {
+        	@Override
+            public int compare(String o1, String o2) {
+                //return Integer.parseInt(o1) - Integer.parseInt(o2);
+               // Double d=Double.parseDouble(o1) - Double.parseDouble(o1);
+        		//Float f = Float.parseFloat(o1) - Float.parseFloat(o2);
+        		Float f = extractFloat(o1) - extractFloat(o2);
+        		int val = 0;
+        		if(f>0.0)
+        			val = (int)Math.ceil(f);
+                else if(f<0.0)
+        			val = (int)Math.floor(f);
+        		
+				return val;
+            }
+        	
+            float extractFloat(String s) {
+            	//s= s.replaceAll("--", "");
+            	////System.out.println(s);
+            	//String num = s.replaceAll(("[^.&&\\D]"), "");
+                String num = s.replaceAll(("[^.\\d]"), "");
+                // return 0 if no digits found
+                ////System.out.println(num);
+                return num.isEmpty() ? 0 : Float.parseFloat(num);
+            }
+        });
+        //System.out.println(inputlist);
+        return inputlist;
+    }
+    
+    public static List<String> sortIntegerList(List<String> inputlist) {
+        Collections.sort(inputlist, new Comparator<String>() {
+        	@Override
+            public int compare(String o1, String o2) {
+                long l= Long.parseLong(o1) - Long.parseLong(o2);
+        		int val = 0;
+        		if(l>0)
+        			val = (int)l;
+                else if(l<0)
+        			val = (int)l;
+        		
+				return val;
+            }
+        });
+        //System.out.println(inputlist);
+        return inputlist;
+    }
+    
+    public static boolean isNumeric(String str)  {  
+    	try  
+	      	{  
+	        	double d = Double.parseDouble(str);  
+	      	}  
+	      	catch(NumberFormatException nfe)  
+	      	{  
+	      		return false;  
+	      	}  
+    	return true;
+    	//return str.matches("-?\\d+(\\.\\d+)?");
+    }
+
+    public static boolean isAlphabatic(String str) {
+        char[] chars = str.toCharArray();
+
+        for (char c : chars) {
+            if(!Character.isLetter(c)) {
+                return false;
+            }
+        }
+        return true;
+        //return str.matches("[a-zA-Z]+");
+    }
+    
+    public static boolean isAlphanumeric(String str) {
+        char[] chars = str.toCharArray();
+
+        for (char c : chars) {
+            if(!Character.isLetterOrDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+        //return str.matches("[a-zA-Z]+");
+    }
+    
+	public static boolean isStrAvailable(List<String> hayStack, String needle) {
+		for(String str : hayStack) {
+			if(str.equalsIgnoreCase(needle)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public static void sleep(int seconds) {
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	public static int createDirectory(String directoryPath) {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside createDirectory");
+		}*/
+
+		File file = new File(directoryPath);
+		if (!file.exists()) {
+			if (file.mkdirs()) {
+				Log.info("Directory " + directoryPath + " created");
+				return 0;
+			} else {
+				Log.error("Failed to create directory " + directoryPath);
+				return -1;
+			}
+		}
+		
+		Log.info("Directory " + directoryPath + " already exists");
+		return 0;
+	}
+	
+	public static String getCwd() {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside getCWd");
+		}*/
+		
+		String cwd = System.getProperty("user.dir");
+		System.out.println("Current working directory is " + cwd);
+		
+		return cwd;
+	}
+	
+	public static int setFirefoxDownloadDir1(WebDriver wd, String dirName) {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside setFirefoxDownloadDir");
+		}*/
+		
+		FirefoxProfile firefoxProfile = new FirefoxProfile();
+		firefoxProfile.setPreference("browser.download.folderList",2);
+		firefoxProfile.setPreference("browser.download.manager.showWhenStarting",false);
+		firefoxProfile.setPreference("browser.download.dir",dirName);
+		firefoxProfile.setPreference("browser.helperApps.neverAsk.saveToDisk", "text/csv,application/x-msexcel,application/excel,application/x-excel,application/vnd.ms-excel,image/png,image/jpeg,text/html,text/plain,application/msword,application/xml, application/pdf");
+		
+		return 0;
+	}
+	
+	public static boolean doesFileExist(String fileName) {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside doesFileExist");
+		}*/
+
+		File file = new File(fileName);
+		return file.exists();
+	}
+	
+	//in mm/dd/yyyy format
+	public static String getCurrentDate() {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside getCurrentDate");
+		}*/
+		
+		String strPattern = "dd/MM/yyyy";
+		String dateInString =new SimpleDateFormat(strPattern).format(new Date());
+		
+		return dateInString;
+	}
+	
+	public static String getCurrTimeStamp() {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside getCurrentDate");
+		}*/	
+		  
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
+		Date curDate = new Date();
+		String strDateTime = dateFormat.format(curDate);
+		
+		return strDateTime;
+	}
+	
+	
+	public static String removeChars(String str, String charsToRemove) {
+          char[] ca = charsToRemove.toCharArray();
+          for (char c : ca) {
+                  str = str.replace(""+c, "");
+          }
+
+          return str;
+	}
+	
+	public static String extractFileNameFromUrl(String strUrl) {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside getFileName");
+		}*/
+		
+		//Path p = Paths.get(filePath);
+		//String strFile = p.getFileName().toString();
+		
+		String fileName = strUrl.substring(strUrl.lastIndexOf('/') + 1);
+		
+		return fileName;
+	}
+	
+	public static long dateTimeToEpoch(String dateTimeStr, String formatStr) {
+/*		if(logger.isDebugEnabled()) {
+			logger.debug("Inside dateTimeToEpoch");
+		}*/		
+	    
+		//String str = "Jun 13 2003 23:11:52.454 UTC";
+	    //SimpleDateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS zzz");
+		SimpleDateFormat df = new SimpleDateFormat(formatStr);
+		df.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+	    Date date = null;
+		try {
+			date = df.parse(dateTimeStr);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    long epoch = date.getTime();
+	    
+	    return epoch;
+	    //System.out.println(epoch); // 1055545912454
+	}
+	
+	public static long usEpochToTimeZoneEpoch(long USEpoch, String TZone, String formatStr) {
+		SimpleDateFormat df=new SimpleDateFormat(formatStr);
+	    df.setTimeZone(TimeZone.getTimeZone(TZone));
+	    //System.out.println(df.format(lastUpdatedTimeLocalEpoch));
+	    String lastUpdatedTime=df.format(USEpoch);
+	    long lastUpdatedTimeZoneEpoch= CommonUtils.dateTimeToEpoch(lastUpdatedTime, formatStr);
+	    return lastUpdatedTimeZoneEpoch;
+	}
+	
+	public static String TestEpochToEstDate(Long epoch1) {
+        //Date date = new Date(1318386508000L);
+		Long epoch = Long.parseLong("1440513614322");
+		Date date = new Date(epoch);        
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
+        String formatted = format.format(date);
+        System.out.println(formatted);
+        format.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+        formatted = format.format(date);
+        System.out.println(formatted);   
+        
+        format.setTimeZone(TimeZone.getTimeZone("GMT"));
+        formatted = format.format(date);
+        System.out.println(formatted); 
+        return formatted;
+	}
+	
+	public static String EpochToEstDate(Long epoch) {
+        //Date date = new Date(1318386508000L);
+		//Long epoch = Long.parseLong("1440513614322");
+		Date date = new Date(epoch);        
+        DateFormat format = new SimpleDateFormat("HH:mm:ss");
+        format.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+        String formatted = format.format(date);
+        System.out.println(formatted);
+
+        return formatted;
+	}
+	
+	public static String EpochToHHmmSS(Long epoch, String strTimeZone) {
+		Date date = new Date(epoch);        
+        DateFormat format = new SimpleDateFormat("HH:mm:ss");
+        format.setTimeZone(TimeZone.getTimeZone(strTimeZone));
+        String formatted = format.format(date);
+        System.out.println(formatted);
+
+        return formatted;
+	}
+	
+	public static double RoundTo3Dec(double d) {
+		double roundOff = Math.round(d * 1000.0) / 1000.0;
+		return roundOff;
+	}
+	
+	
+	public static String StringRoundTo3Dec(String s) {
+		double d = Double.parseDouble(s);
+		double roundOff = Math.round(d * 1000.0) / 1000.0;
+		String roundedstring=String.valueOf(roundOff);
+		String decimalPlaceZeros=roundedstring.split("\\.")[1];
+		if(decimalPlaceZeros.length()==1)
+			roundedstring=roundedstring+"00";
+		else if(decimalPlaceZeros.length()==2)
+			roundedstring=roundedstring+"0";
+		return roundedstring;
+	}
+	
+
+	public static double RoundTo1Dec(double d) {
+		double roundOff = Math.round(d * 10.0) / 10.0;
+		return roundOff;
+	}
+	
+	public static String GetSystemTimeZone() {
+		TimeZone tz = Calendar.getInstance().getTimeZone();
+		System.out.println(tz.getDisplayName());	// (i.e. Moscow Standard Time)
+		System.out.println(tz.getID());
+		return tz.getID();
+	}
+	
+	public static double calculateMedian(Vector<Integer> values) {
+		values.sort(null);
+		
+		// Calculate median (middle number)
+		double median = 0;
+		double pos1 = Math.floor((values.size() - 1.0) / 2.0);
+		double pos2 = Math.ceil((values.size() - 1.0) / 2.0);
+		if (pos1 == pos2 ) {
+			median = values.get((int)pos1);
+		} else {
+			median = (values.get((int)pos1) + values.get((int)pos2)) / 2.0 ;
+		}
+	 
+		System.out.println("Median: " + median);
+		return median;
+	}
+	
+	public static double calculateMedian1(Vector<Integer> values) {
+	    Collections.sort(values);
+	    
+	    if (values.size() % 2 == 1) {
+	    	return values.get((values.size()+1)/2-1);
+	    } else {
+	    	double lower = values.get(values.size()/2-1);
+	    	double upper = values.get(values.size()/2);
+	 
+	    	return (lower + upper) / 2.0;
+	    }
+	}
+	
+	
+	public static String getLastModifiedFilefromDir(String dirPath) {
+	    File dir = new File(dirPath);
+	    File[] files = dir.listFiles();
+	    if (files == null || files.length == 0) {
+	        return null;
+	    }
+
+	    File lastModifiedFile = files[0];
+	    for (int i = 1; i < files.length; i++) {
+	       if (lastModifiedFile.lastModified() < files[i].lastModified()) {
+	           lastModifiedFile = files[i];
+	       }
+	    }
+	    
+	    return lastModifiedFile.getAbsolutePath();
+	}
+	
+	public static boolean isApproxEqualTo(double compareWith, double valueToCompare) {
+		Log.debug("isApproxEqualTo called");
+		
+		double floor = Math.floor(compareWith);
+		double ceiling = Math.ceil(compareWith);
+		
+		if((valueToCompare >= floor) && (valueToCompare <= ceiling)) {
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	public static boolean clickFfDialog(short key) throws AWTException {
+		// Create object of Robot class<br>
+//		Robot object=new Robot();
+//
+//		// Press Enter<br>
+//		object.keyPress(KeyEvent.VK_ENTER);
+//
+//		// Release Enter<br>
+//		object.keyRelease(KeyEvent.VK_ENTER);
+//		
+//		return true;
+		
+        Robot robot = new Robot();  // Robot class throws AWT Exception  
+        CommonUtils.sleep(2000); // Thread.sleep throws InterruptedException  
+        robot.keyPress(KeyEvent.VK_DOWN);  // press arrow down key of keyboard to navigate and select Save radio button  
+         
+        CommonUtils.sleep(2000);  // sleep has only been used to showcase each event separately   
+        robot.keyPress(KeyEvent.VK_TAB); 
+        CommonUtils.sleep(2000);  
+        robot.keyPress(KeyEvent.VK_TAB); 
+        CommonUtils.sleep(2000);  
+        robot.keyPress(KeyEvent.VK_TAB); 
+        CommonUtils.sleep(2000);  
+        robot.keyPress(KeyEvent.VK_ENTER);
+        
+        return true;
+	}
+	
+	public static String getNumericMonth(String monthStr) {
+		Log.info("getNumericMonth called with " + monthStr);
+		
+		if(monthStr.contains("Jan") || monthStr.contains("January")) {
+			return "01";
+		} else if(monthStr.contains("Feb") || monthStr.contains("February")) {
+			return "02";
+		} else if(monthStr.contains("Mar") || monthStr.contains("March")) {
+			return "03";
+		} else if(monthStr.contains("Apr") || monthStr.contains("April")) {
+			return "04";
+		} else if(monthStr.contains("May")) {
+			return "05";
+		} else if(monthStr.contains("Jun") || monthStr.contains("June")) {
+			return "06";
+		} else if(monthStr.contains("Jul") || monthStr.contains("July")) {
+			return "07";
+		} else if(monthStr.contains("Aug") || monthStr.contains("August")) {
+			return "08";
+		} else if(monthStr.contains("Sep") || monthStr.contains("September")) {
+			return "09";
+		} else if(monthStr.contains("Oct") || monthStr.contains("October")) {
+			return "10";
+		} else if(monthStr.contains("Nov") || monthStr.contains("November")) {
+			return "11";
+		} else if(monthStr.contains("Dec") || monthStr.contains("December")) {
+			return "12";
+		} else {
+			return "";
+		}
+	}
+	
+	public static List<String> getInitialWordsFromString(List<String> desc){
+		List<String> descriptonlist = new ArrayList<String>();
+		for(String s:desc){
+//			s=s.split(" ")[(s.split(" ").length)-1].replaceAll("(?s).", "");
+//			s=s.split(" ")[(s.split(" ").length)-1].replaceAll("(?s).", "");
+			s=s.split(" ")[0]+" "+s.split(" ")[1];
+			descriptonlist.add(s.toLowerCase());
+		}
+		return descriptonlist;
+	}
+	
+	public static void showMessageAll(String msg){
+		System.out.println(msg);
+		Log.info(msg);
+		Reporter.log(msg);
+	}
+	
+	public static Date stringToDate(String value, String format){
+		Date reportFormattedDate=null;
+        if (value.equals("")){
+        	System.out.println("Blank Date String received");
+        	//return value;
+        }
+        else{
+			try {
+				reportFormattedDate = new SimpleDateFormat(format).parse(value);
+				return reportFormattedDate;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+		return reportFormattedDate;
+	}
+	
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
+    }   
+    
+    
+    public static boolean isDateInCurrentWeek(String dateInString,String format) {
+//    	String strDate = "20091504";
+//    	TemporalAccessor ta = DateTimeFormatter.ofPattern("yyyyMMdd").parse(strDate);
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+    	LocalDate date = LocalDate.parse(dateInString, formatter);
+    	LocalDate now = LocalDate.now();
+    	TemporalField field = WeekFields.of(Locale.getDefault()).dayOfWeek();
+    	Boolean containsToday = ((date.equals(now.with(field, 1)))||(date.isAfter(now.with(field, 1)))) && (date.isBefore((now.plusWeeks(1)).with(field, 1))) ;
+    	return containsToday;
+  	}  
+    
+    
+    public static boolean isDateInCurrentMonth(String dateInString, String format) {
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+    	LocalDate date = LocalDate.parse(dateInString, formatter);
+    	LocalDate now = LocalDate.now();  	
+    	LocalDate nextMonth = now.plus(1, ChronoUnit.MONTHS); 
+    	Boolean containsToday = ((date.equals(now.withDayOfMonth(1)))||(date.isAfter(now.withDayOfMonth(1)))) && (date.isBefore((nextMonth.withDayOfMonth(1)))) ;
+    	return containsToday;
+  	} 
+    
+    public static boolean isDateStringEqualsOrBetween(String inputDate, String format, String detaFrom, String dateTo) {
+    	boolean flag=false;
+    	boolean flagafter=false;
+    	boolean flagbefore=false;
+    	Date input=convertStringToDate(inputDate, format);
+    	
+		if(input.before(convertStringToDate(dateTo, format)) || input.equals(convertStringToDate(dateTo, format)));
+			flagbefore=true;
+		if(input.after(convertStringToDate(detaFrom, format)) || input.equals(convertStringToDate(detaFrom, format)));
+			flagafter=true;
+		
+		if(flagbefore && flagafter)
+			flag=true;
+		
+		return flag;
+  	}
+
+}
+
+*****************************************************************************************************************************
+Log:-
+/**   
+* For logging across framework.
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.utilities;
+
+
+import org.apache.log4j.Logger;
+
+public class Log{
+	
+     private static Logger log = Logger.getLogger(Log.class.getName());//
+     //Log.setLevel(Level.ALL);
+	 
+	 
+	 public static void info(String message) {	 
+	    log.info(message);
+	    }
+	 
+	 public static void warn(String message) {	 
+	    log.warn(message);
+	    }
+	 
+	 public static void error(String message) {	 
+	    log.error(message);
+	    }
+	 
+	 public static void fatal(String message) {	 
+	    log.fatal(message);
+	    }
+	 
+	 public static void debug(String message) {	 
+	    log.debug(message);
+	    }
+	 
+	 public static void trace(Throwable t) {	 
+	    log.error(t.getMessage(), t);
+	    }
+
+	}
+  *********************************************************************************************************************************
+  FileReader:-
+  /**   
+* For reading .xlsx or .xls file types.
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.utilities;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.log4j.Logger;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+public class FileReader {
+	public static String[][] readExcelFile(String filePath, String excelFileName, String excelSheetName) throws IOException {
+		File file =    new File(filePath+"//"+excelFileName);
+		FileInputStream fis = new FileInputStream(file);
+		
+		Workbook wb = null;
+		
+		String fileExtensionName = excelFileName.substring(excelFileName.indexOf("."));
+		
+		if(fileExtensionName.equals(".xlsx")){
+			wb = new XSSFWorkbook(fis);
+		}
+		else if(fileExtensionName.equals(".xls")){
+			wb = new HSSFWorkbook(fis);
+		}
+		
+		Sheet ws = wb.getSheet(excelSheetName);
+
+		int numRowsWithHeader = 1;
+		
+		//System.out.println(ws.getLastRowNum());
+		
+		numRowsWithHeader = ws.getLastRowNum() + 1;
+		int dataRows = (numRowsWithHeader - 1);
+		
+		//System.out.println(numRowsWithHeader);
+		//System.out.println(dataRows);
+		
+		int numCols = ws.getRow(0).getLastCellNum();
+		//System.out.println(numCols);
+		
+		String data[][] = new String[dataRows][numCols];
+		
+		for(int i = 0; i < dataRows; i++) {
+			Row row = ws.getRow(i+1);
+			if(row != null) {
+				for(int j = 0; j < numCols; j++) {
+					Cell cell = row.getCell(j);
+					String cellVal = "";
+					if(cell != null) {
+						cellVal = cellToString(cell);
+					}
+					data[i][j] = cellVal;
+					//System.out.println(cellVal);
+				}
+			}
+		}
+		
+		wb.close();
+
+		return data;
+	}
+	
+
+	private static String cellToString(Cell cell) {
+		int typeOfCell = 0;
+		Object result = null;
+		typeOfCell = cell.getCellType();
+		
+		switch(typeOfCell) {
+		case 0:	//numeric value in excel cell
+			result = cell.getNumericCellValue();
+			break;
+		case 1:	//String value in excel cell
+			result = cell.getStringCellValue();
+			break;
+		case 3: //blank cell
+			result = "";
+			break;
+		default:
+			throw new RuntimeException("No support for this kind of cell");			
+		}
+		
+		return result.toString().trim();
+	}
+	
+/*    public static void main(String...strings) throws IOException{
+     String[][] arr=FileReader.readExcelFile("src//test//resources", "TestData.xlsx","LoginPage");
+     System.out.println(arr[0][1]);
+    }*/	
+	
+
+}
+
+*******************************************************************************************************************************************
+AdvanceSearchData
+
+/**   
+* This class contains data objects for Advance Search test class to read data from excel file
+* @author  Ravi Jindal
+*/
+
+package com.ice.vaf.dataobjects;
+
+import java.io.IOException;
+
+import org.testng.annotations.DataProvider;
+
+import com.ice.vaf.utilities.FileReader;
+
+public class AdvanceSearchPageData {
+
+	@DataProvider(name="AdvanceSearch")
+	public static Object[][] SearchData() throws IOException {
+		Object[][] arrayObject = FileReader.readExcelFile("src//test//resources","TestData_AdvanceSearch.xlsx","AdvSearch_02");
+		return arrayObject;
+	}
+	
+	@DataProvider(name="AdvSearch_02")
+	public static Object[][] SearchData_AdvSearch_02() throws IOException {
+		Object[][] arrayObject = FileReader.readExcelFile("src//test//resources","TestData_AdvanceSearch.xlsx","AdvSearch_02");
+		return arrayObject;
+	}
+	
+	@DataProvider(name="AdvSearch_07")
+	public static Object[][] SearchData_AdvSearch_07() throws IOException {
+		Object[][] arrayObject = FileReader.readExcelFile("src//test//resources","TestData_AdvanceSearch.xlsx","AdvSearch_07");
+		return arrayObject;
+	}
+	
+	@DataProvider(name="AdvSearch_08")
+	public static Object[][] SearchData_AdvSearch_08() throws IOException {
+		Object[][] arrayObject = FileReader.readExcelFile("src//test//resources","TestData_AdvanceSearch.xlsx","AdvSearch_08");
+		return arrayObject;
+	}
+}
+ **************************************************************************************************************************************************
+ 
